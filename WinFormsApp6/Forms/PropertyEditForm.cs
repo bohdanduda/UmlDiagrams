@@ -35,10 +35,10 @@ namespace WinFormsApp6
         {
             if (this.addingNewProperty)
             {
-                    this.PropertyListBox.Items.Add(this.txtBox_propertyName.Text);
+                this.PropertyListBox.Items.Add(this.txtBox_propertyName.Text);
             }
             
-            this.PropertyListBox.SelectedItem = this.txtBox_propertyName.Text;
+            this.PropertyListBox.Items[this.PropertyListBox.SelectedIndex] = this.txtBox_propertyName.Text;
             this.Close();
         }
 

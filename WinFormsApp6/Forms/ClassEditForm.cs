@@ -54,5 +54,17 @@ namespace WinFormsApp6
             propertyEdit.Show();
 
         }
+
+        private void btn_edit_Click(object sender, EventArgs e)
+        {
+            if (listBox_properties.SelectedItem==null)
+            {
+                MessageBox.Show("Vyber něco debile");
+                return;
+            }
+            PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, false);
+
+            propertyEdit.Show();
+        }
     }
 }

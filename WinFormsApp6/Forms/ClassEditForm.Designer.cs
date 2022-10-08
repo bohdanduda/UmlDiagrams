@@ -36,6 +36,7 @@
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_delete_property = new System.Windows.Forms.Button();
             this.btn_add_property = new System.Windows.Forms.Button();
+            this.btn_edit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtBox_className
@@ -60,13 +61,13 @@
             this.listBox_properties.ItemHeight = 15;
             this.listBox_properties.Location = new System.Drawing.Point(12, 85);
             this.listBox_properties.Name = "listBox_properties";
-            this.listBox_properties.Size = new System.Drawing.Size(142, 94);
+            this.listBox_properties.Size = new System.Drawing.Size(174, 94);
             this.listBox_properties.TabIndex = 10;
             // 
             // lbl_properties
             // 
             this.lbl_properties.AutoSize = true;
-            this.lbl_properties.Location = new System.Drawing.Point(51, 67);
+            this.lbl_properties.Location = new System.Drawing.Point(67, 67);
             this.lbl_properties.Name = "lbl_properties";
             this.lbl_properties.Size = new System.Drawing.Size(61, 15);
             this.lbl_properties.TabIndex = 12;
@@ -74,7 +75,7 @@
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(12, 250);
+            this.btn_save.Location = new System.Drawing.Point(12, 293);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(75, 23);
             this.btn_save.TabIndex = 13;
@@ -84,7 +85,7 @@
             // 
             // btn_cancel
             // 
-            this.btn_cancel.Location = new System.Drawing.Point(93, 250);
+            this.btn_cancel.Location = new System.Drawing.Point(111, 293);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(75, 23);
             this.btn_cancel.TabIndex = 14;
@@ -96,7 +97,7 @@
             // 
             this.btn_delete_property.Location = new System.Drawing.Point(12, 185);
             this.btn_delete_property.Name = "btn_delete_property";
-            this.btn_delete_property.Size = new System.Drawing.Size(68, 23);
+            this.btn_delete_property.Size = new System.Drawing.Size(85, 23);
             this.btn_delete_property.TabIndex = 16;
             this.btn_delete_property.Text = "ODEBRAT";
             this.btn_delete_property.UseVisualStyleBackColor = true;
@@ -104,19 +105,30 @@
             // 
             // btn_add_property
             // 
-            this.btn_add_property.Location = new System.Drawing.Point(86, 185);
+            this.btn_add_property.Location = new System.Drawing.Point(11, 214);
             this.btn_add_property.Name = "btn_add_property";
-            this.btn_add_property.Size = new System.Drawing.Size(68, 23);
+            this.btn_add_property.Size = new System.Drawing.Size(175, 23);
             this.btn_add_property.TabIndex = 17;
-            this.btn_add_property.Text = "PŘIDAT";
+            this.btn_add_property.Text = "PŘIDAT NOVOU VLASTNOST";
             this.btn_add_property.UseVisualStyleBackColor = true;
             this.btn_add_property.Click += new System.EventHandler(this.btn_add_property_Click);
+            // 
+            // btn_edit
+            // 
+            this.btn_edit.Location = new System.Drawing.Point(103, 185);
+            this.btn_edit.Name = "btn_edit";
+            this.btn_edit.Size = new System.Drawing.Size(83, 23);
+            this.btn_edit.TabIndex = 18;
+            this.btn_edit.Text = "UPRAVIT";
+            this.btn_edit.UseVisualStyleBackColor = true;
+            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
             // 
             // ClassEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(392, 328);
+            this.Controls.Add(this.btn_edit);
             this.Controls.Add(this.btn_add_property);
             this.Controls.Add(this.btn_delete_property);
             this.Controls.Add(this.btn_cancel);
@@ -142,5 +154,6 @@
         private Button btn_cancel;
         private Button btn_delete_property;
         private Button btn_add_property;
+        private Button btn_edit;
     }
 }
