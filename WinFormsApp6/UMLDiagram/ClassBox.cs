@@ -1,23 +1,10 @@
-﻿using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Dynamic;
-using System.Linq;
-using System.Reflection.PortableExecutable;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading.Tasks.Dataflow;
-using System.Xml.Linq;
-using WinFormsApp6.Data;
+﻿using WinFormsApp6.Data;
 using WinFormsApp6.UMLDiagram;
 
 namespace WinFormsApp6
 {
     public class ClassBox
     {
-        private const int LINE_HEIGHT = 12;
         private const int PADDING = 2;
         private const int HORIZONTAL_EXTRA_PADDING = 10;
 
@@ -129,7 +116,7 @@ namespace WinFormsApp6
                     Brushes.Black,
                     startingPoint
                     );
-                startingPoint.Y += LINE_HEIGHT;
+                startingPoint.Y += SystemFonts.DefaultFont.Height;
             }
         }
 

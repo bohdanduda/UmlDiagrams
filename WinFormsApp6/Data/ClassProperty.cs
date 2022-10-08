@@ -8,7 +8,7 @@
         
         public override string ToString()
         {
-            return $"{this.AccessModifier} {this.DataType} {this.Name}";
+            return $"- {this.AccessModifier} {this.DataType} {this.Name}";
         }
     }
 }
