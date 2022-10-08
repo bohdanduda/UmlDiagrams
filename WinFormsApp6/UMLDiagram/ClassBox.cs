@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Dynamic;
 using System.Linq;
 using System.Reflection.PortableExecutable;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using System.Xml.Linq;
 using WinFormsApp6.Data;
+using WinFormsApp6.UMLDiagram;
 
 namespace WinFormsApp6
 {
@@ -15,6 +19,7 @@ namespace WinFormsApp6
     {
         private const int LINE_HEIGHT = 12;
         private const int PADDING = 2;
+        private const int HORIZONTAL_EXTRA_PADDING = 10;
 
         public Point TopLeft { get; set; }
 
@@ -29,7 +34,7 @@ namespace WinFormsApp6
         public bool IsPointInClassBox(Point point)
         {
             return point.X >= this.TopLeft.X && point.X <= this.TopLeft.X + GetWidth()
-                && point.Y >= this.TopLeft.Y && point.Y <= this.TopLeft.Y + GetWidth();
+                && point.Y >= this.TopLeft.Y && point.Y <= this.TopLeft.Y + GetHeight();
         }
 
         public int GetHeight()
@@ -39,7 +44,23 @@ namespace WinFormsApp6
 
         public int GetWidth()
         {
-            return 100;
+            List<string> classStrings = new();
+
+            classStrings.Add(this.ClassData.ClassName);
+
+            foreach (ClassProperty classProperty in this.ClassData.Properties)
+            {
+                classStrings.Add(classProperty.ToString());
+            }
+
+            foreach (string classMethodName in this.ClassData.Methods)
+            {
+                classStrings.Add(classMethodName);
+            }
+
+            string longestClassString = classStrings.OrderByDescending(classString => classString.Length).First();
+
+            return TextRenderer.MeasureText(longestClassString, SystemFonts.DefaultFont).Width + PADDING * 2 + HORIZONTAL_EXTRA_PADDING;
         }
 
         private void DrawFrame(Graphics graphics)
@@ -81,7 +102,7 @@ namespace WinFormsApp6
         {
             graphics.DrawString(
             this.ClassData.ClassName,
-            new (SystemFonts.DefaultFont, FontStyle.Bold),
+            new(SystemFonts.DefaultFont, FontStyle.Bold),
             Brushes.Black,
             this.TopLeft.X + PADDING, this.TopLeft.Y + PADDING
             );
