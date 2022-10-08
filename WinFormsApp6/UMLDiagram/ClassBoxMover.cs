@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WinFormsApp6.UMLDiagram
+﻿namespace WinFormsApp6.UMLDiagram
 {
     public class ClassBoxMover
     {
@@ -19,9 +13,8 @@ namespace WinFormsApp6.UMLDiagram
 
         public void StopMoving()
         {
-            this.MovingClassBox = null; 
+            this.MovingClassBox = null;
         }
-
 
         public void UpdateDiagram(Point currentMousePoint)
         {

@@ -45,5 +45,23 @@ namespace WinFormsApp6.UMLDiagram
 
             return new Point(newBoxSpawnPoint.X, newBoxSpawnPoint.Y);
         }
+
+        public ClassBox? GetClickedClassBox(Point point)
+        {
+            for (int i = this.ClassBoxes.Count - 1; i >= 0; i--)
+            {
+                ClassBox classBox = this.ClassBoxes[i];
+
+                if (classBox.IsPointInClassBox(point))
+                {
+                    this.ClassBoxes.Remove(classBox);
+                    this.ClassBoxes.Add(classBox);
+
+                    return classBox;
+                }
+            }
+
+            return null;
+        }
     }
 }
