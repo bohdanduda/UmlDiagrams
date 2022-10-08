@@ -1,4 +1,6 @@
-﻿namespace WinFormsApp6.Diagram
+﻿using WinFormsApp6.Data;
+
+namespace WinFormsApp6.Diagram
 {
     public class Diagram
     {

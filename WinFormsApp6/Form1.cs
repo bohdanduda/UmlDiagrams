@@ -1,3 +1,5 @@
+using WinFormsApp6.Diagram;
+
 namespace WinFormsApp6
 {
     public partial class Form1 : Form

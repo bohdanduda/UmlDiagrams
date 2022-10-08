@@ -1,4 +1,4 @@
-﻿namespace WinFormsApp6
+﻿namespace WinFormsApp6.Data
 {
     public class ClassData
     {
