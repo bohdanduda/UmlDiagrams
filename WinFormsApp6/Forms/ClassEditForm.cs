@@ -11,10 +11,10 @@ using WinFormsApp6.Data;
 
 namespace WinFormsApp6
 {
-    public partial class Form2 : Form
+    public partial class ClassEditForm : Form
     {
         public ClassData ClassData { get; set; }
-        public Form2(ClassData classData)
+        public ClassEditForm(ClassData classData)
         {
             InitializeComponent();
             this.ClassData = classData;
@@ -45,6 +45,14 @@ namespace WinFormsApp6
         private void btn_delete_Click(object sender, EventArgs e)
         {
             this.listBox_properties.Items.Remove(this.listBox_properties.SelectedItem);
+        }
+
+        private void btn_add_property_Click(object sender, EventArgs e)
+        {
+            PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, true);
+
+            propertyEdit.Show();
+
         }
     }
 }

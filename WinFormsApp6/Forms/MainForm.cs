@@ -3,12 +3,12 @@ using WinFormsApp6.UMLDiagram;
 
 namespace WinFormsApp6
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         public Diagram Diagram { get; set; }
         public ClassBoxMover ClassBoxMover { get; set; }
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
 
@@ -69,7 +69,7 @@ namespace WinFormsApp6
             {
                 return;
             }
-            Form2 form2 = new Form2(classBox.ClassData); 
+            ClassEditForm form2 = new ClassEditForm(classBox.ClassData); 
             form2.Show();
         }
     }

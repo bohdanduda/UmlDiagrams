@@ -1,6 +1,6 @@
 ﻿namespace WinFormsApp6
 {
-    partial class Form2
+    partial class ClassEditForm
     {
         /// <summary>
         /// Required designer variable.
@@ -110,8 +110,9 @@
             this.btn_add_property.TabIndex = 17;
             this.btn_add_property.Text = "PŘIDAT";
             this.btn_add_property.UseVisualStyleBackColor = true;
+            this.btn_add_property.Click += new System.EventHandler(this.btn_add_property_Click);
             // 
-            // Form2
+            // ClassEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -124,8 +125,8 @@
             this.Controls.Add(this.listBox_properties);
             this.Controls.Add(this.lbl_className);
             this.Controls.Add(this.txtBox_className);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.Name = "ClassEditForm";
+            this.Text = "Editace třídy";
             this.ResumeLayout(false);
             this.PerformLayout();
 
