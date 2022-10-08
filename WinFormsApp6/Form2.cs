@@ -24,18 +24,27 @@ namespace WinFormsApp6
             {
                 this.listBox_properties.Items.Add(propertyName);
             }
-            
         }
 
         private void btn_save_Click(object sender, EventArgs e)
         {
             ClassData.ClassName = this.txtBox_className.Text;
+            ClassData.Properties.Clear();
+            foreach (string propertyName in listBox_properties.Items)
+            {
+                ClassData.Properties.Add(propertyName);
+            }
             Close();
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            this.listBox_properties.Items.Remove(this.listBox_properties.SelectedItem);
         }
     }
 }

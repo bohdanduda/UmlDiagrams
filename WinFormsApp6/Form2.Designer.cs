@@ -34,6 +34,8 @@
             this.lbl_properties = new System.Windows.Forms.Label();
             this.btn_save = new System.Windows.Forms.Button();
             this.btn_cancel = new System.Windows.Forms.Button();
+            this.btn_delete_property = new System.Windows.Forms.Button();
+            this.btn_add_property = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtBox_className
@@ -58,13 +60,13 @@
             this.listBox_properties.ItemHeight = 15;
             this.listBox_properties.Location = new System.Drawing.Point(12, 85);
             this.listBox_properties.Name = "listBox_properties";
-            this.listBox_properties.Size = new System.Drawing.Size(120, 94);
+            this.listBox_properties.Size = new System.Drawing.Size(142, 94);
             this.listBox_properties.TabIndex = 10;
             // 
             // lbl_properties
             // 
             this.lbl_properties.AutoSize = true;
-            this.lbl_properties.Location = new System.Drawing.Point(39, 67);
+            this.lbl_properties.Location = new System.Drawing.Point(51, 67);
             this.lbl_properties.Name = "lbl_properties";
             this.lbl_properties.Size = new System.Drawing.Size(61, 15);
             this.lbl_properties.TabIndex = 12;
@@ -72,7 +74,7 @@
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(12, 201);
+            this.btn_save.Location = new System.Drawing.Point(12, 250);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(75, 23);
             this.btn_save.TabIndex = 13;
@@ -82,7 +84,7 @@
             // 
             // btn_cancel
             // 
-            this.btn_cancel.Location = new System.Drawing.Point(93, 201);
+            this.btn_cancel.Location = new System.Drawing.Point(93, 250);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(75, 23);
             this.btn_cancel.TabIndex = 14;
@@ -90,11 +92,32 @@
             this.btn_cancel.UseVisualStyleBackColor = true;
             this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
+            // btn_delete_property
+            // 
+            this.btn_delete_property.Location = new System.Drawing.Point(12, 185);
+            this.btn_delete_property.Name = "btn_delete_property";
+            this.btn_delete_property.Size = new System.Drawing.Size(68, 23);
+            this.btn_delete_property.TabIndex = 16;
+            this.btn_delete_property.Text = "ODEBRAT";
+            this.btn_delete_property.UseVisualStyleBackColor = true;
+            this.btn_delete_property.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
+            // btn_add_property
+            // 
+            this.btn_add_property.Location = new System.Drawing.Point(86, 185);
+            this.btn_add_property.Name = "btn_add_property";
+            this.btn_add_property.Size = new System.Drawing.Size(68, 23);
+            this.btn_add_property.TabIndex = 17;
+            this.btn_add_property.Text = "PŘIDAT";
+            this.btn_add_property.UseVisualStyleBackColor = true;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 506);
+            this.ClientSize = new System.Drawing.Size(392, 328);
+            this.Controls.Add(this.btn_add_property);
+            this.Controls.Add(this.btn_delete_property);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.lbl_properties);
@@ -116,5 +139,7 @@
         private Label lbl_properties;
         private Button btn_save;
         private Button btn_cancel;
+        private Button btn_delete_property;
+        private Button btn_add_property;
     }
 }
