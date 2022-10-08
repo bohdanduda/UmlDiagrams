@@ -43,7 +43,7 @@ namespace WinFormsApp6
         {
             graphics.DrawString(
             this.ClassData.ClassName,
-            new Font("Comic Sans MS", TITLE_FONT_SIZE),
+            SystemFonts.DefaultFont,
             Brushes.Black,
             this.TopLeftPoint.X + 1, this.TopLeftPoint.Y + 1
             );
@@ -66,7 +66,7 @@ namespace WinFormsApp6
                 graphics.DrawString(
 
                     line,
-                    new Font("Comic Sans MS", TEXT_FONT_SIZE),
+                    SystemFonts.DefaultFont,
                     Brushes.Black,
                     startingPoint
                     );
