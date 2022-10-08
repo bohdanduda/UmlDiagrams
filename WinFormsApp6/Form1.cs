@@ -1,24 +1,24 @@
-using WinFormsApp6.Diagram;
+using WinFormsApp6.UMLDiagram;
 
 namespace WinFormsApp6
 {
     public partial class Form1 : Form
     {
-        public Diagram.Diagram Mechanics { get; set; }
-        public Diagram.ClassBoxMover MoveMechanics { get; set; }
+        public Diagram Diagram { get; set; }
+        public ClassBoxMover ClassBoxMover { get; set; }
 
         public Form1()
         {
             InitializeComponent();
 
-            this.Mechanics = new Diagram.Diagram() { Width = this.pictureBox1.Width, Height = this.pictureBox1.Height };
-            this.MoveMechanics = new Diagram.ClassBoxMover();
+            this.Diagram = new Diagram();
+            this.ClassBoxMover = new ClassBoxMover();
         }
 
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            this.Mechanics.Draw(e.Graphics);
+            this.Diagram.Draw(e.Graphics);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace WinFormsApp6
 
         private void btn_add_class_Click(object sender, EventArgs e)
         {
-            this.Mechanics.AddClassBox();
+            this.Diagram.AddClassBox();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -39,25 +39,25 @@ namespace WinFormsApp6
             {
                 return;
             }
-            MoveMechanics.StartMoving(classBox, e.Location);
+            ClassBoxMover.StartMoving(classBox, e.Location);
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            MoveMechanics.StopMoving();
+            ClassBoxMover.StopMoving();
         }
 
 
         public ClassBox? GetClickedClassBox(Point point)
         {
-            for (int i = this.Mechanics.ClassBoxes.Count - 1; i >= 0; i--)
+            for (int i = this.Diagram.ClassBoxes.Count - 1; i >= 0; i--)
             {
-                ClassBox classBox = this.Mechanics.ClassBoxes[i];
+                ClassBox classBox = this.Diagram.ClassBoxes[i];
 
                 if (classBox.IsPointInClassBox(point))
                 {
-                    Mechanics.ClassBoxes.Remove(classBox);
-                    Mechanics.ClassBoxes.Add(classBox);
+                    Diagram.ClassBoxes.Remove(classBox);
+                    Diagram.ClassBoxes.Add(classBox);
 
                     return classBox;
                 }
@@ -68,7 +68,7 @@ namespace WinFormsApp6
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            MoveMechanics.UpdateDiagram(e.Location);
+            ClassBoxMover.UpdateDiagram(e.Location);
 
         }
 
@@ -77,10 +77,7 @@ namespace WinFormsApp6
             Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Graphics graphics = Graphics.FromImage(bitmap);
 
-            foreach (ClassBox classBox in Mechanics.ClassBoxes)
-            {
-                classBox.Draw(graphics);
-            }
+            this.Diagram.Draw(graphics);    
             
             pictureBox1.Image = bitmap;
         }

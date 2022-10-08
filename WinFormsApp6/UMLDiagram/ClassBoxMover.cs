@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinFormsApp6.Diagram
+namespace WinFormsApp6.UMLDiagram
 {
     public class ClassBoxMover
     {

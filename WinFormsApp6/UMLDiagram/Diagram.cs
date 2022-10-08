@@ -1,6 +1,6 @@
 ﻿using WinFormsApp6.Data;
 
-namespace WinFormsApp6.Diagram
+namespace WinFormsApp6.UMLDiagram
 {
     public class Diagram
     {
@@ -10,26 +10,20 @@ namespace WinFormsApp6.Diagram
         private const int SPAWN_POINT_OFFSET = 10;
         public List<ClassBox> ClassBoxes { get; set; } = new List<ClassBox>();
 
-        public int Width { get; set; }
-
-        public int Height { get; set; }
-
-        public void Draw(Graphics g)
+        public void Draw(Graphics graphics)
         {
             foreach (ClassBox item in ClassBoxes)
             {
-                item.Draw(g);
+                item.Draw(graphics);
             }
         }
 
         public void AddClassBox()
         {
-            Point spawnPoint = generateNewClassSpawnPoint();
-
-            ClassBoxes.Add(new ClassBox()
+            this.ClassBoxes.Add(new ClassBox()
             {
-                ClassData = new ClassData() { ClassName = generateNewClassName() },
-                TopLeftPoint = spawnPoint,
+                ClassData = new ClassData() { ClassName = this.generateNewClassName() },
+                TopLeftPoint = this.generateNewClassSpawnPoint(),
                 Width = 100,
                 Height = 50
             });
