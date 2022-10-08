@@ -56,8 +56,8 @@ namespace WinFormsApp6
             Bitmap bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
             Graphics graphics = Graphics.FromImage(bitmap);
 
-            this.Diagram.Draw(graphics);    
-            
+            this.Diagram.Draw(graphics);
+
             pictureBox1.Image = bitmap;
         }
 
@@ -68,7 +68,7 @@ namespace WinFormsApp6
             {
                 return;
             }
-            ClassEditForm form2 = new ClassEditForm(classBox.ClassData); 
+            ClassEditForm form2 = new ClassEditForm(classBox.ClassData);
             form2.Show();
         }
     }

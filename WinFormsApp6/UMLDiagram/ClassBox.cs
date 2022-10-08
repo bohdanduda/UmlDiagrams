@@ -1,5 +1,4 @@
 ﻿using WinFormsApp6.Data;
-using WinFormsApp6.UMLDiagram;
 
 namespace WinFormsApp6
 {

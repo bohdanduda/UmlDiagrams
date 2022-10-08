@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using WinFormsApp6.Data;
+﻿using WinFormsApp6.Data;
 
 namespace WinFormsApp6
 {
@@ -57,7 +48,7 @@ namespace WinFormsApp6
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            if (listBox_properties.SelectedItem==null)
+            if (listBox_properties.SelectedItem == null)
             {
                 MessageBox.Show("Je třeba vybrat vlastnost");
                 return;

@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace WinFormsApp6.Data
+﻿namespace WinFormsApp6.Data
 {
     public class ClassData
     {

@@ -14,7 +14,7 @@ namespace WinFormsApp6.UMLDiagram
         {
             foreach (ClassBox item in ClassBoxes)
             {
-                item.Draw(graphics);               
+                item.Draw(graphics);
             }
         }
 
