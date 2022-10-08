@@ -1,3 +1,4 @@
+using WinFormsApp6.Data;
 using WinFormsApp6.UMLDiagram;
 
 namespace WinFormsApp6
@@ -59,6 +60,17 @@ namespace WinFormsApp6
             this.Diagram.Draw(graphics);    
             
             pictureBox1.Image = bitmap;
+        }
+
+        private void pictureBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ClassBox? classBox = this.Diagram.GetClickedClassBox(e.Location);
+            if (classBox == null)
+            {
+                return;
+            }
+            Form2 form2 = new Form2(classBox.ClassData); 
+            form2.Show();
         }
     }
 }
