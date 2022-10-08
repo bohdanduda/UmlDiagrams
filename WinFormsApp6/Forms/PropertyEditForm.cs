@@ -47,7 +47,13 @@ namespace WinFormsApp6
 
             if (this.addingNewProperty)
             {
-                this.PropertyListBox.Items.Add(new ClassProperty() { Name = this.txtBox_propertyName.Text });
+                this.PropertyListBox.Items.Add(new ClassProperty()
+                {
+                    AccessModifier = this.comboBox_accessModifier.SelectedItem.ToString(),
+                    DataType = this.comboBox_dataType.SelectedItem.ToString(),
+                    Name = this.txtBox_propertyName.Text
+                }
+                );
                 this.Close();
 
                 return;
