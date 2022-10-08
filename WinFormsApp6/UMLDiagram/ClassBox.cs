@@ -6,6 +6,7 @@ using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
+using System.Xml.Linq;
 using WinFormsApp6.Data;
 
 namespace WinFormsApp6
@@ -50,7 +51,7 @@ namespace WinFormsApp6
 
         private void DrawProperties(Graphics graphics)
         {
-            this.PrintLines(graphics, ClassData.Properties, this.GetPropertyListStartingPoint());
+            this.PrintLines(graphics, (from classProperty in ClassData.Properties select classProperty.ToString()).ToList(), this.GetPropertyListStartingPoint());
         }
 
         private void DrawMethods(Graphics graphics)

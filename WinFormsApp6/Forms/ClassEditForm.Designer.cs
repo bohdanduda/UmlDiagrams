@@ -63,6 +63,7 @@
             this.listBox_properties.Name = "listBox_properties";
             this.listBox_properties.Size = new System.Drawing.Size(174, 94);
             this.listBox_properties.TabIndex = 10;
+            this.listBox_properties.DoubleClick += new System.EventHandler(this.listBox_properties_DoubleClick);
             // 
             // lbl_properties
             // 

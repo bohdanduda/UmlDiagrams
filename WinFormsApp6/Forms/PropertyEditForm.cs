@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using WinFormsApp6.Data;
 
 namespace WinFormsApp6
 {
@@ -22,7 +13,8 @@ namespace WinFormsApp6
             InitializeComponent();
             if (!addingNewProperty)
             {
-                this.txtBox_propertyName.Text = propertyListBox.SelectedItem.ToString();
+                ClassProperty selectedProperty = this.PropertyListBox.SelectedItem as ClassProperty;
+                this.txtBox_propertyName.Text = selectedProperty.Name;
             }
             else
             {
@@ -33,12 +25,35 @@ namespace WinFormsApp6
 
         private void btn_save_Click(object sender, EventArgs e)
         {
+            if (comboBox_accessModifier.SelectedItem==null)
+            {
+                MessageBox.Show("Je třeba vybrat modifikátor přístupu!");
+                return;
+            }
+
+            if (comboBox_dataType.SelectedItem==null)
+            {
+                MessageBox.Show("Je třeba vybrat datový typ!");
+                return;
+            }
+
+            if (txtBox_propertyName.Text.Trim()=="")
+            {
+                MessageBox.Show("Název vlastnosti nesmí být prázdný!");
+                return;
+            }
+
             if (this.addingNewProperty)
             {
-                this.PropertyListBox.Items.Add(this.txtBox_propertyName.Text);
+                this.PropertyListBox.Items.Add(new ClassProperty() { Name = this.txtBox_propertyName.Text });
+                this.Close();
+
+                return;
             }
-            
-            this.PropertyListBox.Items[this.PropertyListBox.SelectedIndex] = this.txtBox_propertyName.Text;
+
+            ClassProperty selectedProperty = this.PropertyListBox.SelectedItem as ClassProperty;
+            selectedProperty.Name = this.txtBox_propertyName.Text;
+            this.PropertyListBox.Update();
             this.Close();
         }
 

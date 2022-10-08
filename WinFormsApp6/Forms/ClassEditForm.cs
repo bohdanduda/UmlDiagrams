@@ -20,9 +20,9 @@ namespace WinFormsApp6
             this.ClassData = classData;
             this.txtBox_className.Text = classData.ClassName;
 
-            foreach (string propertyName in classData.Properties)
+            foreach (ClassProperty property in classData.Properties)
             {
-                this.listBox_properties.Items.Add(propertyName);
+                this.listBox_properties.Items.Add(property);
             }
         }
 
@@ -30,9 +30,9 @@ namespace WinFormsApp6
         {
             ClassData.ClassName = this.txtBox_className.Text;
             ClassData.Properties.Clear();
-            foreach (string propertyName in listBox_properties.Items)
+            foreach (ClassProperty property in listBox_properties.Items)
             {
-                ClassData.Properties.Add(propertyName);
+                ClassData.Properties.Add(property);
             }
             Close();
         }
@@ -59,12 +59,21 @@ namespace WinFormsApp6
         {
             if (listBox_properties.SelectedItem==null)
             {
-                MessageBox.Show("Vyber něco debile");
+                MessageBox.Show("Je třeba vybrat vlastnost");
                 return;
             }
             PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, false);
 
             propertyEdit.Show();
+        }
+
+        private void listBox_properties_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBox_properties.SelectedItem != null)
+            {
+                PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, false);
+                propertyEdit.Show();
+            }
         }
     }
 }
