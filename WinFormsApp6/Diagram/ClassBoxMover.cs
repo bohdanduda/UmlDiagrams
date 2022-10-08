@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WinFormsApp6.Mechanics
+namespace WinFormsApp6.Diagram
 {
-    public class MoveMechanics
+    public class ClassBoxMover
     {
         public Point LastMousePoint { get; set; } = new Point();
         public ClassBox? MovingClassBox { get; set; }

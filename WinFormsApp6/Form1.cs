@@ -2,15 +2,15 @@ namespace WinFormsApp6
 {
     public partial class Form1 : Form
     {
-        public Mechanics.Mechanics Mechanics { get; set; }
-        public Mechanics.MoveMechanics MoveMechanics { get; set; }
+        public Diagram.Diagram Mechanics { get; set; }
+        public Diagram.ClassBoxMover MoveMechanics { get; set; }
 
         public Form1()
         {
             InitializeComponent();
 
-            this.Mechanics = new Mechanics.Mechanics() { Width = this.pictureBox1.Width, Height = this.pictureBox1.Height };
-            this.MoveMechanics = new Mechanics.MoveMechanics();
+            this.Mechanics = new Diagram.Diagram() { Width = this.pictureBox1.Width, Height = this.pictureBox1.Height };
+            this.MoveMechanics = new Diagram.ClassBoxMover();
         }
 
 

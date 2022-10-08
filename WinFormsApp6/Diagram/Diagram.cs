@@ -1,6 +1,6 @@
-﻿namespace WinFormsApp6.Mechanics
+﻿namespace WinFormsApp6.Diagram
 {
-    public class Mechanics
+    public class Diagram
     {
         private int sampleClassNumber = 0;
         private const string SAMPLE_CLASS_NAME = "Class";
