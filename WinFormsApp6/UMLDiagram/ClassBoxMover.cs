@@ -23,9 +23,9 @@
                 return;
             }
 
-            this.MovingClassBox.TopLeftPoint = new Point(
-                this.MovingClassBox.TopLeftPoint.X + (currentMousePoint.X - this.LastMousePoint.X),
-                this.MovingClassBox.TopLeftPoint.Y + (currentMousePoint.Y - this.LastMousePoint.Y)
+            this.MovingClassBox.TopLeft = new Point(
+                this.MovingClassBox.TopLeft.X + (currentMousePoint.X - this.LastMousePoint.X),
+                this.MovingClassBox.TopLeft.Y + (currentMousePoint.Y - this.LastMousePoint.Y)
                 );
 
             this.LastMousePoint = currentMousePoint;

@@ -13,39 +13,77 @@ namespace WinFormsApp6
 {
     public class ClassBox
     {
-        public int Width;
-        public int Height;
-        public const int TITLE_HEIGHT = 20;
-        public const int TITLE_FONT_SIZE = 10;
-        public const int TEXT_FONT_SIZE = 8;
-
         private const int LINE_HEIGHT = 12;
+        private const int PADDING = 2;
 
-        public Point TopLeftPoint { get; set; }
+        public Point TopLeft { get; set; }
 
         public ClassData ClassData { get; set; }
 
-
         public void Draw(Graphics graphics)
+        {
+            this.DrawFrame(graphics);
+            this.DrawTexts(graphics);
+        }
+
+        public bool IsPointInClassBox(Point point)
+        {
+            return point.X >= this.TopLeft.X && point.X <= this.TopLeft.X + GetWidth()
+                && point.Y >= this.TopLeft.Y && point.Y <= this.TopLeft.Y + GetWidth();
+        }
+
+        public int GetHeight()
+        {
+            return this.GetTitleHeight() + this.GetPropertiesSectionHeight() + this.GetMethodsSectionHeight();
+        }
+
+        public int GetWidth()
+        {
+            return 100;
+        }
+
+        private void DrawFrame(Graphics graphics)
         {
             Pen pen = new Pen(Color.Black);
 
-            Rectangle rectangle = new Rectangle(this.TopLeftPoint.X, this.TopLeftPoint.Y, Width, Height);
+            Rectangle rectangle = new Rectangle(this.TopLeft.X, this.TopLeft.Y, this.GetWidth(), this.GetHeight());
             graphics.FillRectangle(Brushes.WhiteSmoke, rectangle);
-            ControlPaint.DrawBorder(graphics, rectangle, Color.Black, ButtonBorderStyle.Solid);
-            graphics.DrawLine(pen, this.TopLeftPoint.X, this.TopLeftPoint.Y + TITLE_HEIGHT, this.TopLeftPoint.X + Width, this.TopLeftPoint.Y + TITLE_HEIGHT);
+            graphics.DrawRectangle(pen, rectangle);
 
+            graphics.DrawLine(
+                pen,
+                this.TopLeft.X,
+                this.TopLeft.Y + this.GetTitleHeight(),
+                this.TopLeft.X + this.GetWidth(),
+                this.TopLeft.Y + this.GetTitleHeight()
+                );
+
+            if (this.ClassData.Properties.Count > 0 && this.ClassData.Methods.Count > 0)
+            {
+                graphics.DrawLine(
+                    pen,
+                    this.TopLeft.X,
+                    this.TopLeft.Y + this.GetTitleHeight() + this.GetPropertiesSectionHeight(),
+                    this.TopLeft.X + this.GetWidth(),
+                    this.TopLeft.Y + this.GetTitleHeight() + this.GetPropertiesSectionHeight()
+                    );
+            }
+        }
+
+        private void DrawTexts(Graphics graphics)
+        {
             this.DrawTitle(graphics);
             this.DrawProperties(graphics);
             this.DrawMethods(graphics);
         }
+
         private void DrawTitle(Graphics graphics)
         {
             graphics.DrawString(
             this.ClassData.ClassName,
-            SystemFonts.DefaultFont,
+            new (SystemFonts.DefaultFont, FontStyle.Bold),
             Brushes.Black,
-            this.TopLeftPoint.X + 1, this.TopLeftPoint.Y + 1
+            this.TopLeft.X + PADDING, this.TopLeft.Y + PADDING
             );
         }
 
@@ -76,20 +114,29 @@ namespace WinFormsApp6
 
         private Point GetPropertyListStartingPoint()
         {
-            return new Point(this.TopLeftPoint.X + 1, this.TopLeftPoint.Y + 20);
+            return new Point(this.TopLeft.X + PADDING, this.TopLeft.Y + 20);
         }
 
         private Point GetMethodListStartingPoint()
         {
             Point propertyListStartingPoint = this.GetPropertyListStartingPoint();
 
-            return new Point(propertyListStartingPoint.X, propertyListStartingPoint.Y + (ClassData.Properties.Count() * LINE_HEIGHT));
+            return new Point(propertyListStartingPoint.X, propertyListStartingPoint.Y + this.GetPropertiesSectionHeight());
         }
 
-        public bool IsPointInClassBox(Point point)
+        private int GetTitleHeight()
         {
-            return point.X >= this.TopLeftPoint.X && point.X <= this.TopLeftPoint.X + Width
-                && point.Y >= this.TopLeftPoint.Y && point.Y <= this.TopLeftPoint.Y + Height;
+            return SystemFonts.DefaultFont.Height + PADDING * 2;
+        }
+
+        private int GetPropertiesSectionHeight()
+        {
+            return this.ClassData.Properties.Count * SystemFonts.DefaultFont.Height + PADDING * 2;
+        }
+
+        private int GetMethodsSectionHeight()
+        {
+            return this.ClassData.Methods.Count * SystemFonts.DefaultFont.Height + PADDING * 2;
         }
     }
 }

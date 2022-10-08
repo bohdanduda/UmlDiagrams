@@ -23,9 +23,7 @@ namespace WinFormsApp6.UMLDiagram
             this.ClassBoxes.Add(new ClassBox()
             {
                 ClassData = new ClassData() { ClassName = this.generateNewClassName() },
-                TopLeftPoint = this.generateNewClassSpawnPoint(),
-                Width = 100,
-                Height = 100
+                TopLeft = this.generateNewClassSpawnPoint(),
             });
 
         }
