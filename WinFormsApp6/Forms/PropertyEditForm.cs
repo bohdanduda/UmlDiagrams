@@ -15,6 +15,8 @@ namespace WinFormsApp6
             {
                 ClassProperty selectedProperty = this.PropertyListBox.SelectedItem as ClassProperty;
                 this.txtBox_propertyName.Text = selectedProperty.Name;
+                this.comboBox_accessModifier.SelectedIndex = this.comboBox_accessModifier.Items.IndexOf(selectedProperty.AccessModifier);
+                this.comboBox_dataType.SelectedIndex = this.comboBox_dataType.Items.IndexOf(selectedProperty.DataType);
             }
             else
             {
@@ -25,19 +27,19 @@ namespace WinFormsApp6
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            if (comboBox_accessModifier.SelectedItem==null)
+            if (comboBox_accessModifier.SelectedItem == null)
             {
                 MessageBox.Show("Je třeba vybrat modifikátor přístupu!");
                 return;
             }
 
-            if (comboBox_dataType.SelectedItem==null)
+            if (comboBox_dataType.SelectedItem == null)
             {
                 MessageBox.Show("Je třeba vybrat datový typ!");
                 return;
             }
 
-            if (txtBox_propertyName.Text.Trim()=="")
+            if (txtBox_propertyName.Text.Trim() == "")
             {
                 MessageBox.Show("Název vlastnosti nesmí být prázdný!");
                 return;
@@ -52,7 +54,10 @@ namespace WinFormsApp6
             }
 
             ClassProperty selectedProperty = this.PropertyListBox.SelectedItem as ClassProperty;
+            selectedProperty.AccessModifier = this.comboBox_accessModifier.SelectedItem.ToString();
+            selectedProperty.DataType = this.comboBox_dataType.SelectedItem.ToString();
             selectedProperty.Name = this.txtBox_propertyName.Text;
+
             this.PropertyListBox.Update();
             this.Close();
         }
