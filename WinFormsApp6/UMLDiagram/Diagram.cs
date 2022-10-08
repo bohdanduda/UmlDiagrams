@@ -14,7 +14,7 @@ namespace WinFormsApp6.UMLDiagram
         {
             foreach (ClassBox item in ClassBoxes)
             {
-                item.Draw(graphics);
+                item.Draw(graphics);               
             }
         }
 
@@ -25,7 +25,7 @@ namespace WinFormsApp6.UMLDiagram
                 ClassData = new ClassData() { ClassName = this.generateNewClassName() },
                 TopLeftPoint = this.generateNewClassSpawnPoint(),
                 Width = 100,
-                Height = 50
+                Height = 100
             });
 
         }
