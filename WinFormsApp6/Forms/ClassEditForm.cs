@@ -35,6 +35,11 @@ namespace WinFormsApp6
 
         private void btn_delete_Click(object sender, EventArgs e)
         {
+            if (listBox_properties.SelectedItem == null)
+            {
+                MessageBox.Show("Je třeba vybrat vlastnost");
+                return;
+            }
             this.listBox_properties.Items.Remove(this.listBox_properties.SelectedItem);
         }
 
