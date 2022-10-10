@@ -8,17 +8,17 @@
             new ClassProperty() {
                 AccessModifier = "public",
                 DataType = "int",
-                Name = "id"
+                Name = "Property1"
             },
             new ClassProperty() {
                 AccessModifier = "public",
                 DataType = "string",
-                Name = "name"
+                Name = "Property2"
             },
             new ClassProperty() {
                 AccessModifier = "public",
                 DataType = "string",
-                Name = "surname"
+                Name = "Property3"
             },
         };
 
@@ -26,17 +26,17 @@
             new ClassMethod() {
             AccessModifier = "public",
             DataType = "int",
-            Name = "method1"
+            Name = "Method1"
             },
             new ClassMethod() {
             AccessModifier = "public",
-            DataType = "int",
-            Name = "method2"
+            DataType = "string",
+            Name = "Method2"
             },
             new ClassMethod() {
             AccessModifier = "public",
-            DataType = "int",
-            Name = "method3"
+            DataType = "string",
+            Name = "Method3"
             }
         };
     }
