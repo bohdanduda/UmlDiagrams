@@ -127,7 +127,7 @@ namespace WinFormsApp6
 
         private Point GetPropertyListStartingPoint()
         {
-            return new Point(this.TopLeft.X + PADDING, this.TopLeft.Y + 20);
+            return new Point(this.TopLeft.X + PADDING, this.TopLeft.Y + this.GetTitleHeight() + PADDING);
         }
 
         private Point GetMethodListStartingPoint()
@@ -144,11 +144,21 @@ namespace WinFormsApp6
 
         private int GetPropertiesSectionHeight()
         {
+            if (this.ClassData.Properties.Count == 0)
+            {
+                return 0;
+            }
+
             return this.ClassData.Properties.Count * SystemFonts.DefaultFont.Height + PADDING * 2;
         }
 
         private int GetMethodsSectionHeight()
         {
+            if (this.ClassData.Methods.Count == 0)
+            {
+                return 0;
+            }
+
             return this.ClassData.Methods.Count * SystemFonts.DefaultFont.Height + PADDING * 2;
         }
     }
