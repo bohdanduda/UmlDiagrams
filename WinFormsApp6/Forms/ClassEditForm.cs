@@ -15,16 +15,29 @@ namespace WinFormsApp6
             {
                 this.listBox_properties.Items.Add(property);
             }
+
+            foreach (ClassMethod method in classData.Methods)
+            {
+                this.listBox_methods.Items.Add(method);
+            }
         }
 
         private void btn_save_Click(object sender, EventArgs e)
         {
             ClassData.ClassName = this.txtBox_className.Text;
+
             ClassData.Properties.Clear();
             foreach (ClassProperty property in listBox_properties.Items)
             {
                 ClassData.Properties.Add(property);
             }
+
+            ClassData.Methods.Clear();
+            foreach (ClassMethod method in listBox_methods.Items)
+            {
+                ClassData.Methods.Add(method);
+            }
+
             Close();
         }
 
@@ -70,6 +83,35 @@ namespace WinFormsApp6
                 PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, false);
                 propertyEdit.Show();
             }
+        }
+
+        private void btn_addNewMethod_Click(object sender, EventArgs e)
+        {
+            MethodEditForm methodEdit = new MethodEditForm(this.listBox_methods, true);
+            methodEdit.Show();
+        }
+
+        private void btn_editMethod_Click(object sender, EventArgs e)
+        {
+            if (listBox_methods.SelectedItem == null)
+            {
+                MessageBox.Show("Je třeba vybrat metodu");
+                return;
+            }
+
+            MethodEditForm methodEdit = new MethodEditForm(this.listBox_methods, false);
+            methodEdit.Show();
+        }
+        
+        private void btn_deleteMethod_Click(object sender, EventArgs e)
+        {
+            if (listBox_methods.SelectedItem == null)
+            {
+                MessageBox.Show("Je třeba vybrat metodu");
+                return;
+            }
+
+            this.listBox_methods.Items.Remove(this.listBox_methods.SelectedItem);
         }
     }
 }

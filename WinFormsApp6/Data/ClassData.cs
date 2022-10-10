@@ -3,6 +3,7 @@
     public class ClassData
     {
         public string ClassName { get; set; } = "";
+
         public List<ClassProperty> Properties = new List<ClassProperty>() {
             new ClassProperty() {
                 AccessModifier = "public",
@@ -20,6 +21,23 @@
                 Name = "surname"
             },
         };
-        public List<string> Methods = new List<string> { "method1", "method2", "method3" };
+
+        public List<ClassMethod> Methods = new List<ClassMethod>() {
+            new ClassMethod() {
+            AccessModifier = "public",
+            DataType = "int",
+            Name = "method1"
+            },
+            new ClassMethod() {
+            AccessModifier = "public",
+            DataType = "int",
+            Name = "method2"
+            },
+            new ClassMethod() {
+            AccessModifier = "public",
+            DataType = "int",
+            Name = "method3"
+            }
+        };
     }
 }

@@ -6,6 +6,7 @@ namespace WinFormsApp6
     {
         private const int PADDING = 2;
         private const int HORIZONTAL_EXTRA_PADDING = 10;
+        private const int EMPTY_BODY_HEIGHT = 20;
 
         public Point TopLeft { get; set; }
 
@@ -25,6 +26,11 @@ namespace WinFormsApp6
 
         public int GetHeight()
         {
+            if (this.ClassData.Properties.Count == 0 && this.ClassData.Methods.Count == 0)
+            {
+                return this.GetTitleHeight() + EMPTY_BODY_HEIGHT;
+            }
+            
             return this.GetTitleHeight() + this.GetPropertiesSectionHeight() + this.GetMethodsSectionHeight();
         }
 
@@ -39,9 +45,9 @@ namespace WinFormsApp6
                 classStrings.Add(classProperty.ToString());
             }
 
-            foreach (string classMethodName in this.ClassData.Methods)
+            foreach (ClassMethod classMethod in this.ClassData.Methods)
             {
-                classStrings.Add(classMethodName);
+                classStrings.Add(classMethod.ToString());
             }
 
             string longestClassString = classStrings.OrderByDescending(classString => classString.Length).First();
@@ -101,7 +107,7 @@ namespace WinFormsApp6
 
         private void DrawMethods(Graphics graphics)
         {
-            this.PrintLines(graphics, ClassData.Methods, this.GetMethodListStartingPoint());
+            this.PrintLines(graphics, (from classMethod in ClassData.Methods select classMethod.ToString()).ToList(), this.GetMethodListStartingPoint());
         }
 
         private void PrintLines(Graphics graphics, List<string> lines, Point startingPoint)
