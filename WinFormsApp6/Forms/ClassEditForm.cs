@@ -20,6 +20,9 @@ namespace WinFormsApp6
             {
                 this.listBox_methods.Items.Add(method);
             }
+
+            this.RefreshPropertyButtons();
+            this.RefreshMethodButtons();
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -54,14 +57,15 @@ namespace WinFormsApp6
                 return;
             }
             this.listBox_properties.Items.Remove(this.listBox_properties.SelectedItem);
+            this.RefreshPropertyButtons();
         }
 
         private void btn_add_property_Click(object sender, EventArgs e)
         {
             PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, true);
 
-            propertyEdit.Show();
-
+            propertyEdit.ShowDialog();
+            this.RefreshPropertyButtons();
         }
 
         private void btn_edit_Click(object sender, EventArgs e)
@@ -73,7 +77,7 @@ namespace WinFormsApp6
             }
             PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, false);
 
-            propertyEdit.Show();
+            propertyEdit.ShowDialog();
         }
 
         private void listBox_properties_DoubleClick(object sender, EventArgs e)
@@ -81,14 +85,15 @@ namespace WinFormsApp6
             if (listBox_properties.SelectedItem != null)
             {
                 PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, false);
-                propertyEdit.Show();
+                propertyEdit.ShowDialog();
             }
         }
 
         private void btn_addNewMethod_Click(object sender, EventArgs e)
         {
             MethodEditForm methodEdit = new MethodEditForm(this.listBox_methods, true);
-            methodEdit.Show();
+            methodEdit.ShowDialog();
+            this.RefreshMethodButtons();
         }
 
         private void btn_editMethod_Click(object sender, EventArgs e)
@@ -100,7 +105,7 @@ namespace WinFormsApp6
             }
 
             MethodEditForm methodEdit = new MethodEditForm(this.listBox_methods, false);
-            methodEdit.Show();
+            methodEdit.ShowDialog();
         }
         
         private void btn_deleteMethod_Click(object sender, EventArgs e)
@@ -112,6 +117,37 @@ namespace WinFormsApp6
             }
 
             this.listBox_methods.Items.Remove(this.listBox_methods.SelectedItem);
+            this.RefreshMethodButtons();
+        }
+
+        private void RefreshPropertyButtons()
+        {
+            if (this.listBox_properties.Items.Count == 0)
+            {
+                this.btn_delete_property.Enabled = false;
+                this.btn_edit.Enabled = false;
+
+                return;
+            }
+
+            this.btn_delete_property.Enabled = true;
+            this.btn_edit.Enabled = true;
+
+        }
+
+        private void RefreshMethodButtons()
+        {
+            if (this.listBox_methods.Items.Count == 0)
+            {
+                this.btn_deleteMethod.Enabled = false;
+                this.btn_editMethod.Enabled = false;
+
+                return;
+            }
+
+            this.btn_deleteMethod.Enabled = true;
+            this.btn_editMethod.Enabled = true;
+
         }
     }
 }
