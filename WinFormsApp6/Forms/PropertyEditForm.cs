@@ -64,13 +64,29 @@ namespace WinFormsApp6
             selectedProperty.DataType = this.comboBox_dataType.SelectedItem.ToString();
             selectedProperty.Name = this.txtBox_propertyName.Text;
 
-            this.PropertyListBox.Update();
+            this.RefreshPropertyListBox();
             this.Close();
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void RefreshPropertyListBox()
+        {
+            List<ClassProperty> properties = new List<ClassProperty>();
+            foreach (ClassProperty property in this.PropertyListBox.Items)
+            {
+                properties.Add(property);
+            }
+
+            this.PropertyListBox.Items.Clear();
+
+            foreach (ClassProperty property in properties)
+            {
+                this.PropertyListBox.Items.Add(property);
+            }
         }
     }
 }

@@ -27,7 +27,7 @@ namespace WinFormsApp6
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            
+
             if (comboBox_accessModifier.SelectedItem == null)
             {
                 MessageBox.Show("Je třeba vybrat modifikátor přístupu!");
@@ -64,7 +64,7 @@ namespace WinFormsApp6
             selectedMethod.DataType = this.comboBox_dataType.SelectedItem.ToString();
             selectedMethod.Name = this.txtBox_methodName.Text;
 
-            this.MethodListBox.Update();
+            this.RefreshMethodListBox();
             this.Close();
         }
 
@@ -73,5 +73,20 @@ namespace WinFormsApp6
             this.Close();
         }
 
+        private void RefreshMethodListBox()
+        {
+            List<ClassMethod> methods = new List<ClassMethod>();
+            foreach (ClassMethod method in this.MethodListBox.Items)
+            {
+                methods.Add(method);
+            }
+
+            this.MethodListBox.Items.Clear();
+
+            foreach (ClassMethod method in methods)
+            {
+                this.MethodListBox.Items.Add(method);
+            }
+        }
     }
 }
