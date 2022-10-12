@@ -206,6 +206,7 @@
             // 
             // txtBox_CurrentRelationship
             // 
+            this.txtBox_CurrentRelationship.Enabled = false;
             this.txtBox_CurrentRelationship.Location = new System.Drawing.Point(194, 299);
             this.txtBox_CurrentRelationship.Name = "txtBox_CurrentRelationship";
             this.txtBox_CurrentRelationship.Size = new System.Drawing.Size(99, 23);

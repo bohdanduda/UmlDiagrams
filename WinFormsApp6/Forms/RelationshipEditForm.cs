@@ -16,5 +16,15 @@ namespace WinFormsApp6.Forms
         {
             InitializeComponent();
         }
+
+        private void btn_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
