@@ -3,6 +3,7 @@
     public class ClassData
     {
         public string ClassName { get; set; } = "";
+        public bool IsInterface;
 
         public List<ClassProperty> Properties = new List<ClassProperty>() {
             new ClassProperty() {

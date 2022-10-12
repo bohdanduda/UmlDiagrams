@@ -8,7 +8,16 @@
 
         public override string ToString()
         {
-            return $"+ {this.AccessModifier} {this.DataType} {this.Name}()";
+            if (this.AccessModifier == "public")
+            {
+                return $" + {this.DataType} {this.Name}()";
+            }
+            else if (this.AccessModifier == "private")
+            {
+                return $" - {this.DataType} {this.Name}()";
+            }
+
+            return $" # {this.DataType} {this.Name}()";
         }
     }
 }

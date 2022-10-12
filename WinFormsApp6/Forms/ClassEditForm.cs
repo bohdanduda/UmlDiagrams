@@ -1,4 +1,5 @@
 ﻿using WinFormsApp6.Data;
+using WinFormsApp6.Forms;
 
 namespace WinFormsApp6
 {
@@ -107,7 +108,7 @@ namespace WinFormsApp6
             MethodEditForm methodEdit = new MethodEditForm(this.listBox_methods, false);
             methodEdit.ShowDialog();
         }
-        
+
         private void btn_deleteMethod_Click(object sender, EventArgs e)
         {
             if (listBox_methods.SelectedItem == null)
@@ -148,6 +149,33 @@ namespace WinFormsApp6
             this.btn_deleteMethod.Enabled = true;
             this.btn_editMethod.Enabled = true;
 
+        }
+
+        private void listBox_methods_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBox_methods.SelectedItem != null)
+            {
+                MethodEditForm methodEditForm = new MethodEditForm(this.listBox_methods, false);
+                methodEditForm.ShowDialog();
+            }
+        }
+
+        private void checkBox_Interface_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.checkBox_Interface.Checked)
+            {
+                this.ClassData.IsInterface = true;
+                MessageBox.Show("Jeník");
+            }
+
+        }
+
+        private void btn_ChangeRelationship_Click(object sender, EventArgs e)
+        {
+            RelationshipEditForm relationshipEditForm = new RelationshipEditForm();
+            relationshipEditForm.ShowDialog();
+
+            this.txtBox_CurrentRelationship.Text = "Jeník";
         }
     }
 }

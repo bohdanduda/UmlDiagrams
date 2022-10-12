@@ -32,6 +32,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btn_add_class = new System.Windows.Forms.Button();
+            this.btn_removeClass = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,11 +66,22 @@
             this.btn_add_class.UseVisualStyleBackColor = true;
             this.btn_add_class.Click += new System.EventHandler(this.btn_add_class_Click);
             // 
+            // btn_removeClass
+            // 
+            this.btn_removeClass.Location = new System.Drawing.Point(108, 426);
+            this.btn_removeClass.Name = "btn_removeClass";
+            this.btn_removeClass.Size = new System.Drawing.Size(113, 23);
+            this.btn_removeClass.TabIndex = 2;
+            this.btn_removeClass.Text = "ODSTRANIT TŘÍDU";
+            this.btn_removeClass.UseVisualStyleBackColor = true;
+            this.btn_removeClass.Click += new System.EventHandler(this.btn_removeClass_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 459);
+            this.Controls.Add(this.btn_removeClass);
             this.Controls.Add(this.btn_add_class);
             this.Controls.Add(this.pictureBox1);
             this.Name = "MainForm";
@@ -84,5 +96,6 @@
         private PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer1;
         private Button btn_add_class;
+        private Button btn_removeClass;
     }
 }

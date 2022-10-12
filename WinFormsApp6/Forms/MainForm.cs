@@ -71,5 +71,10 @@ namespace WinFormsApp6
             ClassEditForm classEditForm = new ClassEditForm(classBox.ClassData);
             classEditForm.ShowDialog();
         }
+
+        private void btn_removeClass_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
