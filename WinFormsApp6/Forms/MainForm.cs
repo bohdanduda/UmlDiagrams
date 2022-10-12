@@ -76,7 +76,10 @@ namespace WinFormsApp6
 
         private void btn_removeClass_Click(object sender, EventArgs e)
         {
-            
+            if (this.Diagram.SelectedClassBox != null)
+            {
+                this.Diagram.ClassBoxes.Remove(Diagram.SelectedClassBox);
+            }
         }
     }
 }
