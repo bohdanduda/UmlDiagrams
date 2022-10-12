@@ -9,23 +9,26 @@ namespace WinFormsApp6.UMLDiagram
         Point newBoxSpawnPoint = new Point(100, 100);
         private const int SPAWN_POINT_OFFSET = 10;
         public List<ClassBox> ClassBoxes { get; set; } = new List<ClassBox>();
+        public ClassBox? SelectedClassBox;
 
         public void Draw(Graphics graphics)
         {
-            foreach (ClassBox item in ClassBoxes)
+            foreach (ClassBox classbox in ClassBoxes)
             {
-                item.Draw(graphics);
+                classbox.Draw(graphics, SelectedClassBox == classbox);
             }
         }
 
         public void AddClassBox()
         {
-            this.ClassBoxes.Add(new ClassBox()
+            ClassBox newClassBox = new ClassBox()
             {
                 ClassData = new ClassData() { ClassName = this.generateNewClassName() },
                 TopLeft = this.generateNewClassSpawnPoint(),
-            });
+            };
 
+            this.ClassBoxes.Add(newClassBox);
+            this.SetSelectedClassbox(newClassBox);
         }
 
         private string generateNewClassName()
@@ -58,8 +61,18 @@ namespace WinFormsApp6.UMLDiagram
                     return classBox;
                 }
             }
-
             return null;
         }
+        public void SetSelectedClassbox(ClassBox classbox)
+        { 
+            this.SelectedClassBox = classbox;
+        }
+
+        public void UnsetSelectedClassbox()
+        { 
+            this.SelectedClassBox = null;
+        }
+
+
     }
 }

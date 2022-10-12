@@ -12,9 +12,9 @@ namespace WinFormsApp6
 
         public ClassData ClassData { get; set; }
 
-        public void Draw(Graphics graphics)
+        public void Draw(Graphics graphics, bool isSelected)
         {
-            this.DrawFrame(graphics);
+            this.DrawFrame(graphics, isSelected);
             this.DrawTexts(graphics);
         }
 
@@ -30,7 +30,7 @@ namespace WinFormsApp6
             {
                 return this.GetTitleHeight() + EMPTY_BODY_HEIGHT;
             }
-            
+
             return this.GetTitleHeight() + this.GetPropertiesSectionHeight() + this.GetMethodsSectionHeight();
         }
 
@@ -55,14 +55,15 @@ namespace WinFormsApp6
             return TextRenderer.MeasureText(longestClassString, SystemFonts.DefaultFont).Width + PADDING * 2 + HORIZONTAL_EXTRA_PADDING;
         }
 
-        private void DrawFrame(Graphics graphics)
+        private void DrawFrame(Graphics graphics, bool isSelected)
         {
-            Pen pen = new Pen(Color.Black);
+            Pen pen = new Pen(Color.Black, isSelected ? 2 : 1);
 
             Rectangle rectangle = new Rectangle(this.TopLeft.X, this.TopLeft.Y, this.GetWidth(), this.GetHeight());
             graphics.FillRectangle(Brushes.WhiteSmoke, rectangle);
             graphics.DrawRectangle(pen, rectangle);
 
+            pen.Width = 1;
             graphics.DrawLine(
                 pen,
                 this.TopLeft.X,

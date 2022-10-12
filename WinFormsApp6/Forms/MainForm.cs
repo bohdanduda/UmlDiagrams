@@ -35,8 +35,10 @@ namespace WinFormsApp6
             ClassBox? classBox = this.Diagram.GetClickedClassBox(e.Location);
             if (classBox == null)
             {
+                this.Diagram.UnsetSelectedClassbox();
                 return;
             }
+            this.Diagram.SetSelectedClassbox(classBox);
             ClassBoxMover.StartMoving(classBox, e.Location);
         }
 
