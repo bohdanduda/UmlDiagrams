@@ -1,19 +1,21 @@
 ﻿using System.Runtime.CompilerServices;
 using WinFormsApp6.Data;
 using WinFormsApp6.Forms;
+using WinFormsApp6.UMLDiagram;
 
 namespace WinFormsApp6
 {
     public partial class ClassEditForm : Form
     {
         public ClassData ClassData { get; set; }
-        
+        public TextValidator TextValidator = new TextValidator();
+
         public ClassEditForm(ClassData classData)
         {
             InitializeComponent();
             this.ClassData = classData;
             this.txtBox_className.Text = classData.ClassName;
-
+            
             if (this.ClassData.IsInterface)
             {
                 this.checkBox_Interface.CheckState = CheckState.Checked;
@@ -194,11 +196,7 @@ namespace WinFormsApp6
 
         private bool CheckClassName()
         {
-            TextValidator textValidator = new();
-
-            //textValidator.Validate();
-
-            if (!textValidator.ValidateText(this.txtBox_className.Text))
+            if (!TextValidator.ValidateText(this.txtBox_className.Text))
             {
                 MessageBox.Show("Neplatný název třídy!");
                 

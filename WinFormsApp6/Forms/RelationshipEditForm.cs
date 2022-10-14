@@ -15,7 +15,7 @@ namespace WinFormsApp6.Forms
     public partial class RelationshipEditForm : Form
     {
         public ClassRelationship classRelationship = new();
-        
+
         public RelationshipEditForm()
         {
             InitializeComponent();

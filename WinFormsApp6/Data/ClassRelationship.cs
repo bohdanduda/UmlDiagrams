@@ -10,14 +10,14 @@ namespace WinFormsApp6.Data
 {
     public class ClassRelationship
     {
-        public void AddRelationship(ComboBox comboBox)
+        public void AddRelationship(ComboBox comboBox_Relationship)
         {
-            comboBox.Items.Add("Závislost");
-            comboBox.Items.Add("Asociace");
-            comboBox.Items.Add("Agragace");
-            comboBox.Items.Add("Kompozice");
-            comboBox.Items.Add("Dědičnost");
-            comboBox.Items.Add("Realizace");
+            comboBox_Relationship.Items.Add("Závislost");
+            comboBox_Relationship.Items.Add("Asociace");
+            comboBox_Relationship.Items.Add("Agregace");
+            comboBox_Relationship.Items.Add("Kompozice");
+            comboBox_Relationship.Items.Add("Dědičnost");
+            comboBox_Relationship.Items.Add("Realizace");
         }
     }
 }

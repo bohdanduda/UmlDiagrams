@@ -9,16 +9,6 @@ namespace WinFormsApp6
 {
     public class TextValidator
     {
-        public bool Validate(string text, List<string> strings)
-        {
-            if (!this.ValidateText(text) && this.ValidateUniqueName(strings))
-            {
-                return false;
-            }
-             return true;
-
-        }
-
         public bool ValidateText(string text)
         {
             Regex regex = new Regex(@"^[a-zA-Z0-9]+$");
@@ -26,16 +16,16 @@ namespace WinFormsApp6
             return regex.IsMatch(text);
         }
 
-
-        public bool ValidateUniqueName(List<string> strings)
+        public bool ValidateUniqueName(List<string> existingNames, string newName)
         {
-            foreach (string item in strings)
+            foreach (string name in existingNames)
             {
-                if (item == item)
+                if (newName==name)
                 {
                     return false;
                 }
             }
+
             return true;
         }
     }
