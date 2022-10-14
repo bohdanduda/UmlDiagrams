@@ -30,10 +30,10 @@
         {
             this.lbl_dataType = new System.Windows.Forms.Label();
             this.lbl_Relationship = new System.Windows.Forms.Label();
-            this.comboBox_dataType = new System.Windows.Forms.ComboBox();
-            this.comboBox_accessModifier = new System.Windows.Forms.ComboBox();
             this.btn_cancel = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
+            this.comboBox_Relationship = new System.Windows.Forms.ComboBox();
+            this.comboBox_ClassName = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lbl_dataType
@@ -53,32 +53,6 @@
             this.lbl_Relationship.Size = new System.Drawing.Size(36, 15);
             this.lbl_Relationship.TabIndex = 10;
             this.lbl_Relationship.Text = "Vztah";
-            // 
-            // comboBox_dataType
-            // 
-            this.comboBox_dataType.FormattingEnabled = true;
-            this.comboBox_dataType.Items.AddRange(new object[] {
-            "int",
-            "string",
-            "double",
-            "bool",
-            "char"});
-            this.comboBox_dataType.Location = new System.Drawing.Point(138, 27);
-            this.comboBox_dataType.Name = "comboBox_dataType";
-            this.comboBox_dataType.Size = new System.Drawing.Size(122, 23);
-            this.comboBox_dataType.TabIndex = 9;
-            // 
-            // comboBox_accessModifier
-            // 
-            this.comboBox_accessModifier.FormattingEnabled = true;
-            this.comboBox_accessModifier.Items.AddRange(new object[] {
-            "public",
-            "protected",
-            "private"});
-            this.comboBox_accessModifier.Location = new System.Drawing.Point(7, 27);
-            this.comboBox_accessModifier.Name = "comboBox_accessModifier";
-            this.comboBox_accessModifier.Size = new System.Drawing.Size(121, 23);
-            this.comboBox_accessModifier.TabIndex = 8;
             // 
             // btn_cancel
             // 
@@ -100,17 +74,33 @@
             this.btn_save.UseVisualStyleBackColor = true;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
+            // comboBox_Relationship
+            // 
+            this.comboBox_Relationship.FormattingEnabled = true;
+            this.comboBox_Relationship.Location = new System.Drawing.Point(6, 27);
+            this.comboBox_Relationship.Name = "comboBox_Relationship";
+            this.comboBox_Relationship.Size = new System.Drawing.Size(121, 23);
+            this.comboBox_Relationship.TabIndex = 14;
+            // 
+            // comboBox_ClassName
+            // 
+            this.comboBox_ClassName.FormattingEnabled = true;
+            this.comboBox_ClassName.Location = new System.Drawing.Point(138, 27);
+            this.comboBox_ClassName.Name = "comboBox_ClassName";
+            this.comboBox_ClassName.Size = new System.Drawing.Size(121, 23);
+            this.comboBox_ClassName.TabIndex = 15;
+            // 
             // RelationshipEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(275, 104);
+            this.Controls.Add(this.comboBox_ClassName);
+            this.Controls.Add(this.comboBox_Relationship);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.lbl_dataType);
             this.Controls.Add(this.lbl_Relationship);
-            this.Controls.Add(this.comboBox_dataType);
-            this.Controls.Add(this.comboBox_accessModifier);
             this.Name = "RelationshipEditForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -122,9 +112,9 @@
 
         private Label lbl_dataType;
         private Label lbl_Relationship;
-        private ComboBox comboBox_dataType;
-        private ComboBox comboBox_accessModifier;
         private Button btn_cancel;
         private Button btn_save;
+        private ComboBox comboBox_Relationship;
+        private ComboBox comboBox_ClassName;
     }
 }

@@ -27,6 +27,11 @@ namespace WinFormsApp6
 
         private void btn_save_Click(object sender, EventArgs e)
         {
+            if (!this.CheckPropertyName())
+            {
+                return;
+            }
+
             if (comboBox_accessModifier.SelectedItem == null)
             {
                 MessageBox.Show("Je třeba vybrat modifikátor přístupu!");
@@ -87,6 +92,22 @@ namespace WinFormsApp6
             {
                 this.PropertyListBox.Items.Add(property);
             }
+        }
+
+        private bool CheckPropertyName()
+        {
+            TextValidator textValidator = new();
+
+            //textValidator.Validate();
+
+            if (!textValidator.ValidateText(this.txtBox_propertyName.Text))
+            {
+                MessageBox.Show("Neplatný název vlastnosti!");
+
+                return false;
+            }
+
+            return true;
         }
     }
 }

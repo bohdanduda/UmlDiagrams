@@ -27,6 +27,10 @@ namespace WinFormsApp6
 
         private void btn_save_Click(object sender, EventArgs e)
         {
+            if (!this.CheckMethodName())
+            {
+                return;
+            }
 
             if (comboBox_accessModifier.SelectedItem == null)
             {
@@ -87,6 +91,22 @@ namespace WinFormsApp6
             {
                 this.MethodListBox.Items.Add(method);
             }
+        }
+
+        private bool CheckMethodName()
+        {
+            TextValidator textValidator = new();
+
+            //textValidator.Validate();
+
+            if (!textValidator.ValidateText(this.txtBox_methodName.Text))
+            {
+                MessageBox.Show("Neplatný název metody!");
+
+                return false;
+            }
+
+            return true;
         }
     }
 }

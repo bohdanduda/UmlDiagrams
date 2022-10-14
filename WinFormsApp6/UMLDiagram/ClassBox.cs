@@ -63,6 +63,11 @@ namespace WinFormsApp6
             graphics.FillRectangle(Brushes.WhiteSmoke, rectangle);
             graphics.DrawRectangle(pen, rectangle);
 
+            if (ClassData.IsInterface)
+            {
+                this.DrawInterface(graphics, pen);
+            }
+
             pen.Width = 1;
             graphics.DrawLine(
                 pen,
@@ -82,6 +87,7 @@ namespace WinFormsApp6
                     this.TopLeft.Y + this.GetTitleHeight() + this.GetPropertiesSectionHeight()
                     );
             }
+            
         }
 
         private void DrawTexts(Graphics graphics)
@@ -116,7 +122,6 @@ namespace WinFormsApp6
             foreach (string line in lines)
             {
                 graphics.DrawString(
-
                     line,
                     SystemFonts.DefaultFont,
                     Brushes.Black,
@@ -124,6 +129,19 @@ namespace WinFormsApp6
                     );
                 startingPoint.Y += SystemFonts.DefaultFont.Height;
             }
+        }
+
+        private void DrawInterface(Graphics graphics, Pen pen)
+        {
+            Rectangle interfaceRectangle = new Rectangle(this.TopLeft.X, this.TopLeft.Y - 15, this.GetWidth(), 15);
+            Font interfaceFont = new Font("Arial", 13, FontStyle.Regular, GraphicsUnit.Pixel);
+            graphics.DrawRectangle(pen, interfaceRectangle);
+            graphics.DrawString(
+                ":interface",
+                interfaceFont,
+                Brushes.Black,
+                this.TopLeft.X + 30,
+                this.TopLeft.Y - 15);
         }
 
         private Point GetPropertyListStartingPoint()

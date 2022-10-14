@@ -1,4 +1,5 @@
-﻿using WinFormsApp6.Data;
+﻿using System.Runtime.CompilerServices;
+using WinFormsApp6.Data;
 using WinFormsApp6.Forms;
 
 namespace WinFormsApp6
@@ -6,11 +7,17 @@ namespace WinFormsApp6
     public partial class ClassEditForm : Form
     {
         public ClassData ClassData { get; set; }
+        
         public ClassEditForm(ClassData classData)
         {
             InitializeComponent();
             this.ClassData = classData;
             this.txtBox_className.Text = classData.ClassName;
+
+            if (this.ClassData.IsInterface)
+            {
+                this.checkBox_Interface.CheckState = CheckState.Checked;
+            }
 
             foreach (ClassProperty property in classData.Properties)
             {
@@ -28,6 +35,12 @@ namespace WinFormsApp6
 
         private void btn_save_Click(object sender, EventArgs e)
         {
+            MainForm mainForm = new MainForm();
+            if (!this.CheckClassName())
+            {
+                return;
+            }
+            
             ClassData.ClassName = this.txtBox_className.Text;
 
             ClassData.Properties.Clear();
@@ -41,7 +54,8 @@ namespace WinFormsApp6
             {
                 ClassData.Methods.Add(method);
             }
-
+            
+            mainForm.Refresh();
             Close();
         }
 
@@ -165,17 +179,33 @@ namespace WinFormsApp6
             if (this.checkBox_Interface.Checked)
             {
                 this.ClassData.IsInterface = true;
-                MessageBox.Show("Jeník");
             }
-
+            else
+            {
+                this.ClassData.IsInterface = false;
+            }
         }
 
         private void btn_ChangeRelationship_Click(object sender, EventArgs e)
         {
             RelationshipEditForm relationshipEditForm = new RelationshipEditForm();
             relationshipEditForm.ShowDialog();
+        }
 
-            this.txtBox_CurrentRelationship.Text = "Jeník";
+        private bool CheckClassName()
+        {
+            TextValidator textValidator = new();
+
+            //textValidator.Validate();
+
+            if (!textValidator.ValidateText(this.txtBox_className.Text))
+            {
+                MessageBox.Show("Neplatný název třídy!");
+                
+                return false;
+            }
+
+            return true;
         }
     }
 }
