@@ -9,6 +9,7 @@ namespace WinFormsApp6
     {
         public ClassData ClassData { get; set; }
         public TextValidator TextValidator = new TextValidator();
+
         public List<string> ClassNames = new();
 
         public ClassEditForm(ClassData classData, List<string> classNames)
@@ -81,7 +82,7 @@ namespace WinFormsApp6
 
         private void btn_add_property_Click(object sender, EventArgs e)
         {
-            PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, true);
+            PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, this.GetPropertyNames(), true);
 
             propertyEdit.ShowDialog();
             this.RefreshPropertyButtons();
@@ -94,7 +95,7 @@ namespace WinFormsApp6
                 MessageBox.Show("Je třeba vybrat vlastnost");
                 return;
             }
-            PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, false);
+            PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, this.GetPropertyNames(), false);
 
             propertyEdit.ShowDialog();
         }
@@ -103,7 +104,7 @@ namespace WinFormsApp6
         {
             if (listBox_properties.SelectedItem != null)
             {
-                PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, false);
+                PropertyEditForm propertyEdit = new PropertyEditForm(listBox_properties, this.GetPropertyNames(), false);
                 propertyEdit.ShowDialog();
             }
         }
@@ -212,6 +213,21 @@ namespace WinFormsApp6
             }
 
             return true;
+        }
+
+        private List<string> GetPropertyNames()
+        {
+            List<string> propertyNames = new List<string>();
+            foreach (ClassProperty property in this.listBox_properties.Items)
+            {
+                ClassProperty selectedProperty = (ClassProperty)this.listBox_properties.SelectedItem;
+                if (selectedProperty == null || property.Name != selectedProperty.Name)
+                {
+                    propertyNames.Add(property.Name);
+                }
+            }
+
+            return propertyNames;
         }
     }
 }

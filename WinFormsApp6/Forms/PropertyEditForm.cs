@@ -6,11 +6,16 @@ namespace WinFormsApp6
     {
         private bool addingNewProperty { get; set; }
         public ListBox PropertyListBox { get; set; }
-        public PropertyEditForm(ListBox propertyListBox, bool addingNewProperty)
+        public List<string> ExistingPropertyNames { get; set; }
+        public PropertyEditForm(ListBox propertyListBox, List<string> existingPropertyNames, bool addingNewProperty)
         {
             PropertyListBox = propertyListBox;
+
+            this.ExistingPropertyNames = existingPropertyNames;
+
             this.addingNewProperty = addingNewProperty;
             InitializeComponent();
+
             if (!addingNewProperty)
             {
                 ClassProperty selectedProperty = this.PropertyListBox.SelectedItem as ClassProperty;
@@ -23,6 +28,7 @@ namespace WinFormsApp6
                 this.Text = "Přidání nové vlastnosti";
                 this.Update();
             }
+            ExistingPropertyNames = existingPropertyNames;
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -98,11 +104,16 @@ namespace WinFormsApp6
         {
             TextValidator textValidator = new();
 
-            //textValidator.Validate();
-
             if (!textValidator.ValidateText(this.txtBox_propertyName.Text))
             {
                 MessageBox.Show("Neplatný název vlastnosti!");
+
+                return false;
+            }
+
+            if (!textValidator.ValidateUniqueName(ExistingPropertyNames, this.txtBox_propertyName.Text))
+            {
+                MessageBox.Show("Vlastnost s tímto názvem již existuje");
 
                 return false;
             }
