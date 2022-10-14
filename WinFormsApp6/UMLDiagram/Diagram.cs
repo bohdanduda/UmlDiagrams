@@ -15,7 +15,7 @@ namespace WinFormsApp6.UMLDiagram
         {
             foreach (ClassBox classbox in ClassBoxes)
             {
-                classbox.Draw(graphics, SelectedClassBox == classbox);
+                classbox.Draw(graphics, SelectedClassBox == classbox, GetRelatedClassBoxes(classbox.ClassData.Relationships));
             }
         }
 
@@ -86,6 +86,28 @@ namespace WinFormsApp6.UMLDiagram
             }
 
             return classNames;
+        }
+
+        public List<ClassBox> GetRelatedClassBoxes(List<ClassRelationship> relationships)
+        {
+            List<ClassBox> relatedClassBoxes = new List<ClassBox>();
+            foreach (ClassRelationship relationship in relationships)
+            {
+                relatedClassBoxes.Add(GetClassBoxForRelationship(relationship));
+            }
+            return relatedClassBoxes;
+        }
+
+        public ClassBox GetClassBoxForRelationship(ClassRelationship relationship)
+        {
+            foreach (ClassBox classBox in this.ClassBoxes)
+            {
+                if (classBox.ClassData.ClassName==relationship.RelatedClassName)
+                {
+                    return classBox;
+                }
+            }
+            throw new Exception("Chybná data: Nenalezena třída s názvem");
         }
     }
 }

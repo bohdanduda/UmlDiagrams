@@ -12,10 +12,11 @@ namespace WinFormsApp6
 
         public ClassData ClassData { get; set; }
 
-        public void Draw(Graphics graphics, bool isSelected)
+        public void Draw(Graphics graphics, bool isSelected, List<ClassBox> relatedClassBoxes)
         {
             this.DrawFrame(graphics, isSelected);
             this.DrawTexts(graphics);
+            this.DrawRelationships(graphics, relatedClassBoxes);
         }
 
         public bool IsPointInClassBox(Point point)
@@ -142,6 +143,21 @@ namespace WinFormsApp6
                 Brushes.Black,
                 this.TopLeft.X + 30,
                 this.TopLeft.Y - 15);
+        }
+        private void DrawRelationships(Graphics graphics, List<ClassBox> relatedClassBoxes)
+        { 
+            Pen pen = new Pen(Color.Black);
+
+            foreach (ClassBox relatedClassBox in relatedClassBoxes)
+            {
+                this.DrawRelationship(graphics, pen, relatedClassBox.TopLeft);
+            }
+        }
+
+
+        private void DrawRelationship(Graphics graphics, Pen pen, Point relatedClassboxTopLeftPoint)
+        {
+            graphics.DrawLine(pen, TopLeft, relatedClassboxTopLeftPoint);
         }
 
         private Point GetPropertyListStartingPoint()

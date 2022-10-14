@@ -33,6 +33,13 @@ namespace WinFormsApp6
                 this.listBox_methods.Items.Add(method);
             }
 
+            foreach (ClassRelationship relationship in classData.Relationships)
+            {
+                this.listBox_Relationships.Items.Add(relationship);
+            }
+
+
+
             this.RefreshPropertyButtons();
             this.RefreshMethodButtons();
         }
@@ -57,6 +64,12 @@ namespace WinFormsApp6
             foreach (ClassMethod method in listBox_methods.Items)
             {
                 ClassData.Methods.Add(method);
+            }
+
+            ClassData.Relationships.Clear();
+            foreach (ClassRelationship relationship in listBox_Relationships.Items)
+            {
+                ClassData.Relationships.Add(relationship);
             }
 
             mainForm.Refresh();
