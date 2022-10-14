@@ -40,5 +40,8 @@
             Name = "Method3"
             }
         };
+
+        public List<ClassRelationship> Relationships = new List<ClassRelationship>();
+        
     }
 }
