@@ -29,7 +29,6 @@ namespace WinFormsApp6
                 this.Text = "Přidání nové vlastnosti";
                 this.Update();
             }
-            ExistingPropertyNames = existingPropertyNames;
         }
 
         private void btn_save_Click(object sender, EventArgs e)

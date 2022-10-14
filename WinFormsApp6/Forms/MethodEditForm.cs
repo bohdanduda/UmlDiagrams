@@ -7,10 +7,13 @@ namespace WinFormsApp6
     {
         private bool addingNewMethod { get; set; }
         public ListBox MethodListBox { get; set; }
-        public MethodEditForm(ListBox methodListBox, bool addingNewMethod)
+        public List<string> ExistingMethodNames = new();
+        public MethodEditForm(ListBox methodListBox, List<string> existingMethodNames, bool addingNewMethod)
         {
-            this.addingNewMethod = addingNewMethod;
             MethodListBox = methodListBox;
+            this.ExistingMethodNames = existingMethodNames;
+            this.addingNewMethod = addingNewMethod;
+
             InitializeComponent();
             if (!addingNewMethod)
             {
@@ -98,11 +101,16 @@ namespace WinFormsApp6
         {
             TextValidator textValidator = new();
 
-            //textValidator.Validate();
-
             if (!textValidator.ValidateText(this.txtBox_methodName.Text))
             {
                 MessageBox.Show("Neplatný název metody!");
+
+                return false;
+            }
+
+            if (!textValidator.ValidateUniqueName(ExistingMethodNames, this.txtBox_methodName.Text))
+            {
+                MessageBox.Show("Metoda s tímto názvem již existuje");
 
                 return false;
             }

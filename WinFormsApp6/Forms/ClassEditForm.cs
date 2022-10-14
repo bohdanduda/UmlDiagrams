@@ -112,7 +112,7 @@ namespace WinFormsApp6
 
         private void btn_addNewMethod_Click(object sender, EventArgs e)
         {
-            MethodEditForm methodEdit = new MethodEditForm(this.listBox_methods, true);
+            MethodEditForm methodEdit = new MethodEditForm(this.listBox_methods, this.GetMethodNames(), true);
             methodEdit.ShowDialog();
             this.RefreshMethodButtons();
         }
@@ -125,7 +125,7 @@ namespace WinFormsApp6
                 return;
             }
 
-            MethodEditForm methodEdit = new MethodEditForm(this.listBox_methods, false);
+            MethodEditForm methodEdit = new MethodEditForm(this.listBox_methods, this.GetMethodNames(), false);
             methodEdit.ShowDialog();
         }
 
@@ -175,7 +175,7 @@ namespace WinFormsApp6
         {
             if (listBox_methods.SelectedItem != null)
             {
-                MethodEditForm methodEditForm = new MethodEditForm(this.listBox_methods, false);
+                MethodEditForm methodEditForm = new MethodEditForm(this.listBox_methods, this.GetMethodNames(), false);
                 methodEditForm.ShowDialog();
             }
         }
@@ -230,5 +230,22 @@ namespace WinFormsApp6
 
             return propertyNames;
         }
+        
+        private List<string> GetMethodNames()
+        {
+            List<string> methodNames = new List<string>();
+            foreach (ClassMethod method in this.listBox_methods.Items)
+            {
+                ClassMethod selectedMethod = (ClassMethod)this.listBox_methods.SelectedItem;
+                if (selectedMethod == null || method.Name != selectedMethod.Name)
+                {
+                    methodNames.Add(method.Name);
+                }
+            }
+
+            return methodNames;
+        }
+
+
     }
 }
