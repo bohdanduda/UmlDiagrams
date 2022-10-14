@@ -42,6 +42,6 @@
         };
 
         public List<ClassRelationship> Relationships = new List<ClassRelationship>();
-        
+
     }
 }

@@ -87,7 +87,7 @@ namespace WinFormsApp6
                     this.TopLeft.Y + this.GetTitleHeight() + this.GetPropertiesSectionHeight()
                     );
             }
-            
+
         }
 
         private void DrawTexts(Graphics graphics)

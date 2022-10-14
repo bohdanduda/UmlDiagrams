@@ -1,7 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using WinFormsApp6.Data;
+﻿using WinFormsApp6.Data;
 using WinFormsApp6.Forms;
-using WinFormsApp6.UMLDiagram;
 using WinFormsApp6.Utils;
 
 namespace WinFormsApp6
@@ -46,7 +44,7 @@ namespace WinFormsApp6
             {
                 return;
             }
-            
+
             ClassData.ClassName = this.txtBox_className.Text;
 
             ClassData.Properties.Clear();
@@ -60,7 +58,7 @@ namespace WinFormsApp6
             {
                 ClassData.Methods.Add(method);
             }
-            
+
             mainForm.Refresh();
             Close();
         }
@@ -203,7 +201,7 @@ namespace WinFormsApp6
             if (!TextValidator.ValidateText(this.txtBox_className.Text))
             {
                 MessageBox.Show("Neplatný název třídy!");
-                
+
                 return false;
             }
             if (!TextValidator.ValidateUniqueName(this.ClassNames, this.txtBox_className.Text))
@@ -230,7 +228,7 @@ namespace WinFormsApp6
 
             return propertyNames;
         }
-        
+
         private List<string> GetMethodNames()
         {
             List<string> methodNames = new List<string>();
