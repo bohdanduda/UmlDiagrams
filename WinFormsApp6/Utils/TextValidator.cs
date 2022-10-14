@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace WinFormsApp6
+namespace WinFormsApp6.Utils
 {
     public class TextValidator
     {
@@ -20,7 +20,7 @@ namespace WinFormsApp6
         {
             foreach (string name in existingNames)
             {
-                if (newName==name)
+                if (newName == name)
                 {
                     return false;
                 }
