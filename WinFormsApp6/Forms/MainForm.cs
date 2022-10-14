@@ -70,7 +70,7 @@ namespace WinFormsApp6
             {
                 return;
             }
-            ClassEditForm classEditForm = new ClassEditForm(classBox.ClassData);
+            ClassEditForm classEditForm = new ClassEditForm(classBox.ClassData, Diagram.GetClassNames());
             classEditForm.ShowDialog();
         }
 

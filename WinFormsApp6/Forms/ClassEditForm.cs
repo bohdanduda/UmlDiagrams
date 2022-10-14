@@ -9,13 +9,15 @@ namespace WinFormsApp6
     {
         public ClassData ClassData { get; set; }
         public TextValidator TextValidator = new TextValidator();
+        public List<string> ClassNames = new();
 
-        public ClassEditForm(ClassData classData)
+        public ClassEditForm(ClassData classData, List<string> classNames)
         {
             InitializeComponent();
             this.ClassData = classData;
             this.txtBox_className.Text = classData.ClassName;
-            
+            this.ClassNames = classNames;
+
             if (this.ClassData.IsInterface)
             {
                 this.checkBox_Interface.CheckState = CheckState.Checked;
@@ -190,7 +192,7 @@ namespace WinFormsApp6
 
         private void btn_ChangeRelationship_Click(object sender, EventArgs e)
         {
-            RelationshipEditForm relationshipEditForm = new RelationshipEditForm();
+            RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.ClassNames);
             relationshipEditForm.ShowDialog();
         }
 
@@ -200,6 +202,12 @@ namespace WinFormsApp6
             {
                 MessageBox.Show("Neplatný název třídy!");
                 
+                return false;
+            }
+            if (!TextValidator.ValidateUniqueName(this.ClassNames, this.txtBox_className.Text))
+            {
+                MessageBox.Show("Třída s tímto názvem již existuje!");
+
                 return false;
             }
 

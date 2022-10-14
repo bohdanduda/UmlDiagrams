@@ -1,4 +1,5 @@
-﻿using WinFormsApp6.Data;
+﻿using System.Security.Cryptography.X509Certificates;
+using WinFormsApp6.Data;
 
 namespace WinFormsApp6.UMLDiagram
 {
@@ -73,6 +74,19 @@ namespace WinFormsApp6.UMLDiagram
             this.SelectedClassBox = null;
         }
 
+        public List<string> GetClassNames()
+        {
+            List<string> classNames = new List<string>();
 
+            foreach (ClassBox classBox in this.ClassBoxes)
+            {
+                if (classBox.ClassData.ClassName != this.SelectedClassBox.ClassData.ClassName)
+                {
+                    classNames.Add(classBox.ClassData.ClassName);
+                }
+            }
+            
+            return classNames;
+        }
     }
 }

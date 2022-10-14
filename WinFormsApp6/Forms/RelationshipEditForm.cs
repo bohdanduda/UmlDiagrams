@@ -16,12 +16,14 @@ namespace WinFormsApp6.Forms
     {
         public ClassRelationship classRelationship = new();
 
-        public RelationshipEditForm()
+        public RelationshipEditForm(List<string> classNames)
         {
             InitializeComponent();
 
-            this.Text = "Editace vztahu";
-            classRelationship.AddRelationship(this.comboBox_Relationship);
+            foreach (string className in classNames)
+            {
+                this.comboBox_ClassName.Items.Add(className);
+            }
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
