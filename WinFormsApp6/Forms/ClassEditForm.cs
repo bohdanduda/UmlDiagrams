@@ -190,12 +190,6 @@ namespace WinFormsApp6
             }
         }
 
-        private void btn_ChangeRelationship_Click(object sender, EventArgs e)
-        {
-            RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.ClassNames);
-            relationshipEditForm.ShowDialog();
-        }
-
         private bool CheckClassName()
         {
             if (!TextValidator.ValidateText(this.txtBox_className.Text))
@@ -244,6 +238,21 @@ namespace WinFormsApp6
             return methodNames;
         }
 
+        private void btn_ChangeRelationship_Click(object sender, EventArgs e)
+        {
+            RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.ClassNames, this.listBox_Relationships);
+            relationshipEditForm.ShowDialog();
+        }
 
+        private void btn_removeRelationship_Click(object sender, EventArgs e)
+        {
+            this.listBox_Relationships.Items.Remove(this.listBox_Relationships.SelectedItem);
+        }
+
+        private void btn_addRelationship_Click(object sender, EventArgs e)
+        {
+            RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.ClassNames, this.listBox_Relationships);
+            relationshipEditForm.ShowDialog();
+        }
     }
 }

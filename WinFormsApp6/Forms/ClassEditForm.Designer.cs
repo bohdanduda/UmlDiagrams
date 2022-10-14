@@ -44,13 +44,15 @@
             this.listBox_methods = new System.Windows.Forms.ListBox();
             this.checkBox_Interface = new System.Windows.Forms.CheckBox();
             this.btn_ChangeRelationship = new System.Windows.Forms.Button();
-            this.txtBox_CurrentRelationship = new System.Windows.Forms.TextBox();
             this.lbl_Relationship = new System.Windows.Forms.Label();
+            this.btn_addRelationship = new System.Windows.Forms.Button();
+            this.btn_removeRelationship = new System.Windows.Forms.Button();
+            this.listBox_Relationships = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // txtBox_className
             // 
-            this.txtBox_className.Location = new System.Drawing.Point(180, 48);
+            this.txtBox_className.Location = new System.Drawing.Point(278, 42);
             this.txtBox_className.Name = "txtBox_className";
             this.txtBox_className.Size = new System.Drawing.Size(113, 23);
             this.txtBox_className.TabIndex = 0;
@@ -58,7 +60,7 @@
             // lbl_className
             // 
             this.lbl_className.AutoSize = true;
-            this.lbl_className.Location = new System.Drawing.Point(105, 51);
+            this.lbl_className.Location = new System.Drawing.Point(203, 45);
             this.lbl_className.Name = "lbl_className";
             this.lbl_className.Size = new System.Drawing.Size(69, 15);
             this.lbl_className.TabIndex = 1;
@@ -85,7 +87,7 @@
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(113, 389);
+            this.btn_save.Location = new System.Drawing.Point(207, 331);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(75, 23);
             this.btn_save.TabIndex = 13;
@@ -95,7 +97,7 @@
             // 
             // btn_cancel
             // 
-            this.btn_cancel.Location = new System.Drawing.Point(208, 389);
+            this.btn_cancel.Location = new System.Drawing.Point(307, 331);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(75, 23);
             this.btn_cancel.TabIndex = 14;
@@ -186,7 +188,7 @@
             // checkBox_Interface
             // 
             this.checkBox_Interface.AutoSize = true;
-            this.checkBox_Interface.Location = new System.Drawing.Point(155, 10);
+            this.checkBox_Interface.Location = new System.Drawing.Point(253, 4);
             this.checkBox_Interface.Name = "checkBox_Interface";
             this.checkBox_Interface.Size = new System.Drawing.Size(72, 19);
             this.checkBox_Interface.TabIndex = 24;
@@ -196,38 +198,61 @@
             // 
             // btn_ChangeRelationship
             // 
-            this.btn_ChangeRelationship.Location = new System.Drawing.Point(82, 299);
+            this.btn_ChangeRelationship.Location = new System.Drawing.Point(497, 199);
             this.btn_ChangeRelationship.Name = "btn_ChangeRelationship";
-            this.btn_ChangeRelationship.Size = new System.Drawing.Size(106, 23);
+            this.btn_ChangeRelationship.Size = new System.Drawing.Size(83, 23);
             this.btn_ChangeRelationship.TabIndex = 25;
-            this.btn_ChangeRelationship.Text = "ZMĚNIT VZTAH";
+            this.btn_ChangeRelationship.Text = "UPRAVIT";
             this.btn_ChangeRelationship.UseVisualStyleBackColor = true;
             this.btn_ChangeRelationship.Click += new System.EventHandler(this.btn_ChangeRelationship_Click);
-            // 
-            // txtBox_CurrentRelationship
-            // 
-            this.txtBox_CurrentRelationship.Enabled = false;
-            this.txtBox_CurrentRelationship.Location = new System.Drawing.Point(194, 299);
-            this.txtBox_CurrentRelationship.Name = "txtBox_CurrentRelationship";
-            this.txtBox_CurrentRelationship.Size = new System.Drawing.Size(99, 23);
-            this.txtBox_CurrentRelationship.TabIndex = 26;
             // 
             // lbl_Relationship
             // 
             this.lbl_Relationship.AutoSize = true;
-            this.lbl_Relationship.Location = new System.Drawing.Point(198, 281);
+            this.lbl_Relationship.Location = new System.Drawing.Point(468, 81);
             this.lbl_Relationship.Name = "lbl_Relationship";
-            this.lbl_Relationship.Size = new System.Drawing.Size(85, 15);
+            this.lbl_Relationship.Size = new System.Drawing.Size(45, 15);
             this.lbl_Relationship.TabIndex = 27;
-            this.lbl_Relationship.Text = "Aktuální vztah:";
+            this.lbl_Relationship.Text = "Vztahy:";
+            // 
+            // btn_addRelationship
+            // 
+            this.btn_addRelationship.Location = new System.Drawing.Point(405, 228);
+            this.btn_addRelationship.Name = "btn_addRelationship";
+            this.btn_addRelationship.Size = new System.Drawing.Size(175, 23);
+            this.btn_addRelationship.TabIndex = 30;
+            this.btn_addRelationship.Text = "PŘIDAT NOVÝ VZTAH";
+            this.btn_addRelationship.UseVisualStyleBackColor = true;
+            this.btn_addRelationship.Click += new System.EventHandler(this.btn_addRelationship_Click);
+            // 
+            // btn_removeRelationship
+            // 
+            this.btn_removeRelationship.Location = new System.Drawing.Point(406, 199);
+            this.btn_removeRelationship.Name = "btn_removeRelationship";
+            this.btn_removeRelationship.Size = new System.Drawing.Size(85, 23);
+            this.btn_removeRelationship.TabIndex = 29;
+            this.btn_removeRelationship.Text = "ODEBRAT";
+            this.btn_removeRelationship.UseVisualStyleBackColor = true;
+            this.btn_removeRelationship.Click += new System.EventHandler(this.btn_removeRelationship_Click);
+            // 
+            // listBox_Relationships
+            // 
+            this.listBox_Relationships.FormattingEnabled = true;
+            this.listBox_Relationships.ItemHeight = 15;
+            this.listBox_Relationships.Location = new System.Drawing.Point(406, 99);
+            this.listBox_Relationships.Name = "listBox_Relationships";
+            this.listBox_Relationships.Size = new System.Drawing.Size(174, 94);
+            this.listBox_Relationships.TabIndex = 28;
             // 
             // ClassEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 424);
+            this.ClientSize = new System.Drawing.Size(630, 367);
+            this.Controls.Add(this.btn_addRelationship);
+            this.Controls.Add(this.btn_removeRelationship);
+            this.Controls.Add(this.listBox_Relationships);
             this.Controls.Add(this.lbl_Relationship);
-            this.Controls.Add(this.txtBox_CurrentRelationship);
             this.Controls.Add(this.btn_ChangeRelationship);
             this.Controls.Add(this.checkBox_Interface);
             this.Controls.Add(this.btn_editMethod);
@@ -269,7 +294,9 @@
         private ListBox listBox_methods;
         private CheckBox checkBox_Interface;
         private Button btn_ChangeRelationship;
-        private TextBox txtBox_CurrentRelationship;
         private Label lbl_Relationship;
+        private Button btn_addRelationship;
+        private Button btn_removeRelationship;
+        private ListBox listBox_Relationships;
     }
 }

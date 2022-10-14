@@ -5,5 +5,10 @@
         public string Type { get; set; }
 
         public string RelatedClassName { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Type} - {RelatedClassName}";
+        }
     }
 }
