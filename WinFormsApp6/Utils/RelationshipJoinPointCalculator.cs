@@ -4,12 +4,28 @@ namespace WinFormsApp6.Utils
 {
     public class RelationshipJoinPointCalculator
     {
-        public RelationshipLinePoints GetLinePoints(ClassBox sourceClassBox, ClassBox targetClassBox)
+        public const string LINE_TYPE_STRAIGHT = "straight";
+
+        public RelationshipLinePoints GetLinePoints(ClassBox sourceClassBox, ClassBox targetClassBox, string strategy)
         {
-            return new RelationshipLinePoints() {
+            switch (strategy)
+            {
+                case LINE_TYPE_STRAIGHT:
+                    return this.GetStraightLinePoints(sourceClassBox, targetClassBox);
+                    break;
+
+                default:
+                    throw new Exception("Neplatná strategie");
+            }
+        }
+
+        private RelationshipLinePoints GetStraightLinePoints(ClassBox sourceClassBox, ClassBox targetClassBox)
+        {
+            return new RelationshipLinePoints()
+            {
                 StartPoint = sourceClassBox.GetCenterPoint(),
                 EndPoint = targetClassBox.GetCenterPoint()
-                };
+            };
         }
     }
 }
