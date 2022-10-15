@@ -14,6 +14,15 @@ namespace WinFormsApp6.Forms
         {
             InitializeComponent();
 
+            this.comboBox_Relationship.Items.AddRange(new object[] {
+                RelationshipType.ASSOCIATION,
+                RelationshipType.INHERITANCE,
+                RelationshipType.IMPLEMENTATION,
+                RelationshipType.DEPENDENCY,
+                RelationshipType.AGGREGATION,
+                RelationshipType.COMPOSITION
+            });
+
             this.RelationshipListBox = relationshipListBox;
             this.AddingNewRelationship = addingNewRelationship;
 
@@ -43,7 +52,7 @@ namespace WinFormsApp6.Forms
             this.RelationshipListBox.Items.Add(new ClassRelationship
             {
                 Type = this.comboBox_Relationship.Text,
-                RelatedClassName = this.comboBox_ClassName.Text    
+                RelatedClassName = this.comboBox_ClassName.Text
             });
 
 

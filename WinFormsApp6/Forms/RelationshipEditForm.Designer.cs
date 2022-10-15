@@ -77,13 +77,6 @@
             // comboBox_Relationship
             // 
             this.comboBox_Relationship.FormattingEnabled = true;
-            this.comboBox_Relationship.Items.AddRange(new object[] {
-            "Závislost",
-            "Asociace",
-            "Agregace",
-            "Kompozice",
-            "Dědičnost",
-            "Realizace"});
             this.comboBox_Relationship.Location = new System.Drawing.Point(6, 27);
             this.comboBox_Relationship.Name = "comboBox_Relationship";
             this.comboBox_Relationship.Size = new System.Drawing.Size(121, 23);
