@@ -22,7 +22,7 @@
         public Point EndPoint { get; set; }
         public string Type { get; set; }
 
-        private int JoinLocation { get; set; }
+        private int joinType { get; set; }
 
         
         public RelationshipLine(ClassBox sourceClassBox, ClassBox targetClassBox, string type)
@@ -69,7 +69,49 @@
 
         private void DrawOrthogonalLine(Graphics graphics, Pen pen)
         {
-            graphics.DrawLine(pen, StartPoint, EndPoint);
+            if (this.IsJoinTypeRectangularVertical())
+            {
+                Point breakPoint = new(this.StartPoint.X, this.EndPoint.Y);
+                graphics.DrawLine(pen, StartPoint, breakPoint);
+                graphics.DrawLine(pen, breakPoint, EndPoint);
+
+                return;
+            }
+
+            if (this.IsJoinTypeRectangularHorizontal())
+            {
+                Point breakPoint = new(this.EndPoint.X, StartPoint.Y);
+                graphics.DrawLine(pen, StartPoint, breakPoint);
+                graphics.DrawLine(pen, breakPoint, EndPoint);
+
+                return;
+            }
+            
+            if (this.IsJointTypeHorizontal())
+            {
+                int horizontalDistance = this.EndPoint.X - this.StartPoint.X;
+                Point breakPoint1 = new(this.StartPoint.X + (int)(horizontalDistance/2), this.StartPoint.Y);
+                Point breakPoint2 = new(breakPoint1.X, this.EndPoint.Y);
+
+                graphics.DrawLine(pen, StartPoint, breakPoint1);
+                graphics.DrawLine(pen, breakPoint1, breakPoint2);
+                graphics.DrawLine(pen, breakPoint2, EndPoint);
+
+                return;
+            }
+
+            if (this.IsJoinTypeVertical())
+            {
+                int verticalDistance = this.EndPoint.Y - this.StartPoint.Y;
+                Point breakPoint1 = new(StartPoint.X, StartPoint.Y + (int)(verticalDistance / 2));
+                Point breakPoint2 = new(EndPoint.X, breakPoint1.Y);
+
+                graphics.DrawLine(pen, StartPoint, breakPoint1);
+                graphics.DrawLine(pen, breakPoint1, breakPoint2);
+                graphics.DrawLine(pen, breakPoint2, EndPoint);
+
+                return;
+            }
         }
 
         private void CreateStraightLine(ClassBox sourceClassBox, ClassBox targetClassBox)
@@ -158,73 +200,73 @@
                 case BOTTOM_TO_LEFT:
                     this.StartPoint = sourceClassBox.GetBottomJointPoint();
                     this.EndPoint = targetClassBox.GetLeftJointPoint();
-                    this.JoinLocation = BOTTOM_TO_LEFT;
+                    this.joinType = BOTTOM_TO_LEFT;
                     break;
 
                 case BOTTOM_TO_RIGHT:
                     this.StartPoint = sourceClassBox.GetBottomJointPoint();
                     this.EndPoint = targetClassBox.GetRightJointPoint();
-                    this.JoinLocation = BOTTOM_TO_RIGHT;
+                    this.joinType = BOTTOM_TO_RIGHT;
                     break;
 
                 case BOTTOM_TO_TOP:
                     this.StartPoint = sourceClassBox.GetBottomJointPoint();
                     this.EndPoint = targetClassBox.GetTopJointPoint();
-                    this.JoinLocation = BOTTOM_TO_TOP;
+                    this.joinType = BOTTOM_TO_TOP;
                     break;
 
                 case LEFT_TO_BOTTOM:
                     this.StartPoint = sourceClassBox.GetLeftJointPoint();
                     this.EndPoint = targetClassBox.GetBottomJointPoint();
-                    this.JoinLocation = LEFT_TO_BOTTOM;
+                    this.joinType = LEFT_TO_BOTTOM;
                     break;
 
                 case LEFT_TO_RIGHT:
                     this.StartPoint = sourceClassBox.GetLeftJointPoint();
                     this.EndPoint = targetClassBox.GetRightJointPoint();
-                    this.JoinLocation = LEFT_TO_RIGHT;
+                    this.joinType = LEFT_TO_RIGHT;
                     break;
 
                 case LEFT_TO_TOP:
                     this.StartPoint = sourceClassBox.GetLeftJointPoint();
                     this.EndPoint = targetClassBox.GetTopJointPoint();
-                    this.JoinLocation = LEFT_TO_TOP;
+                    this.joinType = LEFT_TO_TOP;
                     break;
 
                 case RIGHT_TO_BOTTOM:
                     this.StartPoint = sourceClassBox.GetRightJointPoint();
                     this.EndPoint = targetClassBox.GetBottomJointPoint();
-                    this.JoinLocation = RIGHT_TO_BOTTOM;
+                    this.joinType = RIGHT_TO_BOTTOM;
                     break;
 
                 case RIGHT_TO_LEFT:
                     this.StartPoint = sourceClassBox.GetRightJointPoint();
                     this.EndPoint = targetClassBox.GetLeftJointPoint(); ;
-                    this.JoinLocation = RIGHT_TO_LEFT;
+                    this.joinType = RIGHT_TO_LEFT;
                     break;
 
                 case RIGHT_TO_TOP:
                     this.StartPoint = sourceClassBox.GetRightJointPoint();
                     this.EndPoint = targetClassBox.GetTopJointPoint();
-                    this.JoinLocation = RIGHT_TO_TOP;
+                    this.joinType = RIGHT_TO_TOP;
                     break;
 
                 case TOP_TO_BOTTOM:
                     this.StartPoint = sourceClassBox.GetTopJointPoint();
                     this.EndPoint = targetClassBox.GetBottomJointPoint();
-                    this.JoinLocation = TOP_TO_BOTTOM;
+                    this.joinType = TOP_TO_BOTTOM;
                     break;
 
                 case TOP_TO_LEFT:
                     this.StartPoint = sourceClassBox.GetTopJointPoint();
                     this.EndPoint = targetClassBox.GetLeftJointPoint();
-                    this.JoinLocation = TOP_TO_LEFT;
+                    this.joinType = TOP_TO_LEFT;
                     break;
 
                 case TOP_TO_RIGHT:
                     this.StartPoint = sourceClassBox.GetTopJointPoint();
                     this.EndPoint = targetClassBox.GetRightJointPoint();
-                    this.JoinLocation = TOP_TO_RIGHT;
+                    this.joinType = TOP_TO_RIGHT;
                     break;
 
                 default:
@@ -236,6 +278,48 @@
         private int GetOrthogonalDistanceBetweenPoints(Point pointA, Point pointB)
         {
             return Math.Abs(pointA.X - pointB.X) + Math.Abs(pointA.Y - pointB.Y);
+        }
+
+        private bool IsJoinTypeRectangularVertical()
+        {
+            int[] rectangularTypes = { 
+            BOTTOM_TO_LEFT,
+            BOTTOM_TO_RIGHT,
+            TOP_TO_LEFT,
+            TOP_TO_RIGHT,
+            };
+
+            return rectangularTypes.Contains(this.joinType);
+        }
+
+        private bool IsJoinTypeRectangularHorizontal()
+        {
+            int[] rectangularTypes = { 
+            LEFT_TO_BOTTOM,
+            LEFT_TO_TOP,
+            RIGHT_TO_BOTTOM,
+            RIGHT_TO_TOP,
+            };
+
+            return rectangularTypes.Contains(this.joinType);
+        }
+
+        private bool IsJoinTypeVertical()
+        {
+            int[] horizontalTypes = {
+                TOP_TO_BOTTOM,
+                BOTTOM_TO_TOP
+            };
+            return horizontalTypes.Contains(this.joinType);
+        }
+
+        private bool IsJointTypeHorizontal()
+        {
+            int[] verticalTypes = {
+                LEFT_TO_RIGHT,
+                RIGHT_TO_LEFT
+            };
+            return verticalTypes.Contains(this.joinType);
         }
     }
 }
