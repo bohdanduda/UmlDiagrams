@@ -144,6 +144,7 @@ namespace WinFormsApp6
                 this.TopLeft.X + 30,
                 this.TopLeft.Y - 15);
         }
+
         private void DrawRelationships(Graphics graphics, List<ClassBox> relatedClassBoxes)
         { 
             Pen pen = new Pen(Color.Black);

@@ -23,8 +23,8 @@ namespace WinFormsApp6.Forms
 
                 ClassRelationship selectedRelationship = this.RelationshipListBox.SelectedItem as ClassRelationship;
 
-                this.comboBox_ClassName.SelectedIndex = this.comboBox_ClassName.Items.IndexOf(selectedRelationship.RelatedClassName);
                 this.comboBox_Relationship.SelectedIndex = this.comboBox_Relationship.Items.IndexOf(selectedRelationship.Type);
+                this.comboBox_ClassName.SelectedIndex = this.comboBox_ClassName.Items.IndexOf(selectedRelationship.RelatedClassName);
             }
             else
             {

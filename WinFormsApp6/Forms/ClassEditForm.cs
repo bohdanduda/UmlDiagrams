@@ -292,6 +292,11 @@ namespace WinFormsApp6
 
         private void btn_ChangeRelationship_Click(object sender, EventArgs e)
         {
+            if (this.listBox_Relationships.SelectedItem == null)
+            {
+                MessageBox.Show("Je třeba vybrat vztah!");
+                return;
+            }
             RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.GetRelationshipNames(), this.listBox_Relationships, false);
             relationshipEditForm.ShowDialog();
         }
