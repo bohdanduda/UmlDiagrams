@@ -24,7 +24,7 @@
 
         private int JoinLocation { get; set; }
 
-
+        
         public RelationshipLine(ClassBox sourceClassBox, ClassBox targetClassBox, string type)
         {
             switch (type)
@@ -41,6 +41,35 @@
             }
 
             this.Type = type;
+        }
+
+        public void Draw(Graphics graphics)
+        {
+            Pen pen = new Pen(Color.Black);
+
+            switch (this.Type)
+            {
+                case LINE_TYPE_STRAIGHT:
+                    this.DrawStraightLine(graphics, pen);
+                    return;
+
+                case LINE_TYPE_ORTHOGONAL:
+                    this.DrawOrthogonalLine(graphics, pen);
+                    return;
+
+                default:
+                    throw new Exception("Neplatný typ!");
+            }
+        }
+
+        private void DrawStraightLine(Graphics graphics, Pen pen)
+        {
+            graphics.DrawLine(pen, StartPoint, EndPoint);
+        }
+
+        private void DrawOrthogonalLine(Graphics graphics, Pen pen)
+        {
+            graphics.DrawLine(pen, StartPoint, EndPoint);
         }
 
         private void CreateStraightLine(ClassBox sourceClassBox, ClassBox targetClassBox)

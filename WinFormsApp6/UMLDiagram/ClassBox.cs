@@ -146,7 +146,8 @@ namespace WinFormsApp6
             foreach (ClassBox relatedClassBox in relatedClassBoxes)
             {
                 RelationshipLine relationshipLine = new RelationshipLine(this, relatedClassBox, RelationshipLine.LINE_TYPE_ORTHOGONAL);
-                graphics.DrawLine(pen, relationshipLine.StartPoint, relationshipLine.EndPoint);
+
+                relationshipLine.Draw(graphics);
             }
         }
 
