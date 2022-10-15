@@ -243,6 +243,7 @@
             this.listBox_Relationships.Name = "listBox_Relationships";
             this.listBox_Relationships.Size = new System.Drawing.Size(174, 94);
             this.listBox_Relationships.TabIndex = 28;
+            this.listBox_Relationships.DoubleClick += new System.EventHandler(this.listBox_Relationships_DoubleClick);
             // 
             // ClassEditForm
             // 

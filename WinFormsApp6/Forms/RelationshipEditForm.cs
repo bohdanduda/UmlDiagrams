@@ -6,6 +6,7 @@ namespace WinFormsApp6.Forms
     {
         public ClassRelationship classRelationship = new();
         public ListBox RelationshipListBox { get; set; }
+
         public List<string> ExistingClassNames = new();
 
 

@@ -1,4 +1,5 @@
-﻿using WinFormsApp6.Data;
+﻿using System.IO.Pipes;
+using WinFormsApp6.Data;
 using WinFormsApp6.Forms;
 using WinFormsApp6.Utils;
 
@@ -251,9 +252,30 @@ namespace WinFormsApp6
             return methodNames;
         }
 
-        private void btn_ChangeRelationship_Click(object sender, EventArgs e)
+        private List<string> GetRelationshipNames()
+        {
+            List<string> relationshipNames = new List<string>();
+            foreach (ClassRelationship relationship in this.listBox_Relationships.Items)
+            {
+                ClassRelationship selectedRelationship = (ClassRelationship)this.listBox_Relationships.SelectedItem;
+                if (selectedRelationship == null || relationship.RelatedClassName != selectedRelationship.RelatedClassName)
+                {
+                    relationshipNames.Add(relationship.RelatedClassName);
+                }
+            }
+            return relationshipNames;
+        }
+
+
+        private void btn_addRelationship_Click(object sender, EventArgs e)
         {
             RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.ClassNames, this.listBox_Relationships);
+            relationshipEditForm.ShowDialog();
+        }
+
+        private void btn_ChangeRelationship_Click(object sender, EventArgs e)
+        {
+            RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.GetRelationshipNames(), this.listBox_Relationships);
             relationshipEditForm.ShowDialog();
         }
 
@@ -262,10 +284,13 @@ namespace WinFormsApp6
             this.listBox_Relationships.Items.Remove(this.listBox_Relationships.SelectedItem);
         }
 
-        private void btn_addRelationship_Click(object sender, EventArgs e)
+        private void listBox_Relationships_DoubleClick(object sender, EventArgs e)
         {
-            RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.ClassNames, this.listBox_Relationships);
-            relationshipEditForm.ShowDialog();
+            if (listBox_Relationships.SelectedItem != null)
+            {
+                RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.GetRelationshipNames(), this.listBox_Relationships);
+                relationshipEditForm.ShowDialog();
+            }
         }
     }
 }

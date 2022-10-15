@@ -109,7 +109,7 @@
             this.Controls.Add(this.lbl_dataType);
             this.Controls.Add(this.lbl_Relationship);
             this.Name = "RelationshipEditForm";
-            this.Text = "Form1";
+            this.Text = "Editace vztahu";
             this.ResumeLayout(false);
             this.PerformLayout();
 
