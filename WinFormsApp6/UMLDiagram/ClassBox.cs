@@ -16,7 +16,6 @@ namespace WinFormsApp6
         {
             this.DrawFrame(graphics, isSelected);
             this.DrawTexts(graphics);
-            this.DrawRelationships(graphics, relatedClassBoxes);
         }
 
         public bool IsPointInClassBox(Point point)
@@ -139,7 +138,7 @@ namespace WinFormsApp6
             }
         }
 
-        private void DrawRelationships(Graphics graphics, List<ClassBox> relatedClassBoxes)
+        public void DrawRelationships(Graphics graphics, List<ClassBox> relatedClassBoxes)
         {
             Pen pen = new Pen(Color.Black);
 

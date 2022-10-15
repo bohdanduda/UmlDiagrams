@@ -13,10 +13,18 @@ namespace WinFormsApp6.UMLDiagram
 
         public void Draw(Graphics graphics)
         {
+            
+            foreach (ClassBox classbox in ClassBoxes)
+            {
+                classbox.DrawRelationships(graphics, GetRelatedClassBoxes(classbox.ClassData.Relationships));
+                
+            }
+        
             foreach (ClassBox classbox in ClassBoxes)
             {
                 classbox.Draw(graphics, SelectedClassBox == classbox, GetRelatedClassBoxes(classbox.ClassData.Relationships));
             }
+        
         }
 
         public void AddClassBox()
