@@ -20,6 +20,7 @@ namespace WinFormsApp6
             if (!addingNewProperty)
             {
                 ClassProperty selectedProperty = this.PropertyListBox.SelectedItem as ClassProperty;
+
                 this.txtBox_propertyName.Text = selectedProperty.Name;
                 this.comboBox_accessModifier.SelectedIndex = this.comboBox_accessModifier.Items.IndexOf(selectedProperty.AccessModifier);
                 this.comboBox_dataType.SelectedIndex = this.comboBox_dataType.Items.IndexOf(selectedProperty.DataType);

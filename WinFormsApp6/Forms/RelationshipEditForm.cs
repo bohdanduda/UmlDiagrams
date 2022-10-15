@@ -8,13 +8,29 @@ namespace WinFormsApp6.Forms
         public ListBox RelationshipListBox { get; set; }
 
         public List<string> ExistingClassNames = new();
+        public bool AddingNewRelationship { get; set; }
 
-
-        public RelationshipEditForm(List<string> classNames, ListBox relationshipListBox)
+        public RelationshipEditForm(List<string> classNames, ListBox relationshipListBox, bool addingNewRelationship)
         {
             InitializeComponent();
 
             this.RelationshipListBox = relationshipListBox;
+            this.AddingNewRelationship = addingNewRelationship;
+
+            if (!addingNewRelationship)
+            {
+                this.Text = "Upravení vztahu";
+
+                ClassRelationship selectedRelationship = this.RelationshipListBox.SelectedItem as ClassRelationship;
+
+                this.comboBox_ClassName.SelectedIndex = this.comboBox_ClassName.Items.IndexOf(selectedRelationship.RelatedClassName);
+                this.comboBox_Relationship.SelectedIndex = this.comboBox_Relationship.Items.IndexOf(selectedRelationship.Type);
+            }
+            else
+            {
+                this.Text = "Přidání vztahu";
+                this.Update();
+            }
 
             foreach (string className in classNames)
             {

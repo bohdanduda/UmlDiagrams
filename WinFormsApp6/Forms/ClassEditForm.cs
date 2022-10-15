@@ -43,6 +43,7 @@ namespace WinFormsApp6
 
             this.RefreshPropertyButtons();
             this.RefreshMethodButtons();
+            this.RefreshRelationshipButtons();
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -183,6 +184,20 @@ namespace WinFormsApp6
 
         }
 
+        private void RefreshRelationshipButtons()
+        {
+            if (this.listBox_Relationships.Items.Count == 0)
+            {
+                this.btn_removeRelationship.Enabled = false;
+                this.btn_ChangeRelationship.Enabled = false;
+
+                return;
+            }
+
+            this.btn_removeRelationship.Enabled = true;
+            this.btn_ChangeRelationship.Enabled = true;
+        }
+
         private void listBox_methods_DoubleClick(object sender, EventArgs e)
         {
             if (listBox_methods.SelectedItem != null)
@@ -269,26 +284,30 @@ namespace WinFormsApp6
 
         private void btn_addRelationship_Click(object sender, EventArgs e)
         {
-            RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.ClassNames, this.listBox_Relationships);
+            RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.ClassNames, this.listBox_Relationships, true);
             relationshipEditForm.ShowDialog();
+
+            this.RefreshRelationshipButtons();
         }
 
         private void btn_ChangeRelationship_Click(object sender, EventArgs e)
         {
-            RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.GetRelationshipNames(), this.listBox_Relationships);
+            RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.GetRelationshipNames(), this.listBox_Relationships, false);
             relationshipEditForm.ShowDialog();
         }
 
         private void btn_removeRelationship_Click(object sender, EventArgs e)
         {
             this.listBox_Relationships.Items.Remove(this.listBox_Relationships.SelectedItem);
+
+            this.RefreshRelationshipButtons();
         }
 
         private void listBox_Relationships_DoubleClick(object sender, EventArgs e)
         {
             if (listBox_Relationships.SelectedItem != null)
             {
-                RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.GetRelationshipNames(), this.listBox_Relationships);
+                RelationshipEditForm relationshipEditForm = new RelationshipEditForm(this.GetRelationshipNames(), this.listBox_Relationships, false);
                 relationshipEditForm.ShowDialog();
             }
         }
