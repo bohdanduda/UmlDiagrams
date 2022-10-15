@@ -1,4 +1,6 @@
-﻿using System.Drawing.Drawing2D;
+﻿using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.IO;
 using WinFormsApp6.Data;
 
 namespace WinFormsApp6.UMLDiagram
@@ -50,22 +52,14 @@ namespace WinFormsApp6.UMLDiagram
 
         public void Draw(Graphics graphics)
         {
-            Pen pen = new Pen(Color.Black);
-            if (this.relationshipType==RelationshipType.IMPLEMENTATION || this.relationshipType==RelationshipType.DEPENDENCY)
-            {
-                float[] dashValues = { 7, 7 };
-                pen.DashPattern = dashValues;
-            }
-            
-            
             switch (this.LineType)
             {
                 case LINE_TYPE_STRAIGHT:
-                    this.DrawStraightLine(graphics, pen);
+                    this.DrawStraightLine(graphics);
                     return;
 
                 case LINE_TYPE_ORTHOGONAL:
-                    this.DrawOrthogonalLine(graphics, pen);
+                    this.DrawOrthogonalLine(graphics);
                     return;
 
                 default:
@@ -73,17 +67,22 @@ namespace WinFormsApp6.UMLDiagram
             }
         }
 
-        private void DrawStraightLine(Graphics graphics, Pen pen)
+        private void DrawStraightLine(Graphics graphics)
         {
+            Pen pen = this.GetPen();
+            pen.CustomEndCap = this.GetCustomLineCap();
             graphics.DrawLine(pen, StartPoint, EndPoint);
         }
 
-        private void DrawOrthogonalLine(Graphics graphics, Pen pen)
+        private void DrawOrthogonalLine(Graphics graphics)
         {
+            Pen pen = this.GetPen();
+
             if (this.IsJoinTypeRectangularVertical())
             {
                 Point breakPoint = new(this.StartPoint.X, this.EndPoint.Y);
                 graphics.DrawLine(pen, StartPoint, breakPoint);
+                pen.CustomEndCap = this.GetCustomLineCap();
                 graphics.DrawLine(pen, breakPoint, EndPoint);
 
                 return;
@@ -93,6 +92,7 @@ namespace WinFormsApp6.UMLDiagram
             {
                 Point breakPoint = new(this.EndPoint.X, StartPoint.Y);
                 graphics.DrawLine(pen, StartPoint, breakPoint);
+                pen.CustomEndCap = this.GetCustomLineCap();
                 graphics.DrawLine(pen, breakPoint, EndPoint);
 
                 return;
@@ -106,6 +106,7 @@ namespace WinFormsApp6.UMLDiagram
 
                 graphics.DrawLine(pen, StartPoint, breakPoint1);
                 graphics.DrawLine(pen, breakPoint1, breakPoint2);
+                pen.CustomEndCap = this.GetCustomLineCap();
                 graphics.DrawLine(pen, breakPoint2, EndPoint);
 
                 return;
@@ -119,6 +120,7 @@ namespace WinFormsApp6.UMLDiagram
 
                 graphics.DrawLine(pen, StartPoint, breakPoint1);
                 graphics.DrawLine(pen, breakPoint1, breakPoint2);
+                pen.CustomEndCap = this.GetCustomLineCap();
                 graphics.DrawLine(pen, breakPoint2, EndPoint);
 
                 return;
@@ -344,6 +346,66 @@ namespace WinFormsApp6.UMLDiagram
             }
 
             throw new Exception("Vztah pro třídu neexistuje");
+        }
+
+        private CustomLineCap GetCustomLineCap()
+        {
+            GraphicsPath capPath = new GraphicsPath();
+
+            switch (this.relationshipType)
+            {
+                case RelationshipType.ASSOCIATION:
+                    capPath.AddLine(0, 0, -10, -10);
+                    capPath.AddLine(0, 0, 10, -10);
+                    return new CustomLineCap(null, capPath);
+
+                case RelationshipType.INHERITANCE:
+                    capPath.AddLine(0, 0, -10, -10);
+                    capPath.AddLine(-10, -10, 10, -10);
+                    capPath.AddLine(0, 0, 10, -10);
+                    return new CustomLineCap(null, capPath);
+
+                case RelationshipType.IMPLEMENTATION:
+                    capPath.AddLine(0, 0, -10, -10);
+                    capPath.AddLine(-10, -10, 10, -10);
+                    capPath.AddLine(0, 0, 10, -10);
+                    return new CustomLineCap(null, capPath);
+
+                case RelationshipType.DEPENDENCY:
+                    capPath.AddLine(0, 0, -10, -10);
+                    capPath.AddLine(0, 0, 10, -10);
+                    return new CustomLineCap(null, capPath);
+
+                case RelationshipType.AGGREGATION:
+                    capPath.AddLine(0, 0, 10, -15);
+                    capPath.AddLine(10, -15, 0, -30);
+                    capPath.AddLine(0, -30, -10, -15);
+                    capPath.AddLine(-10, -15, 0, 0);
+                    return new CustomLineCap(null, capPath);
+
+                case RelationshipType.COMPOSITION:
+                    capPath.AddLine(0, 0, 5, -10);
+                    capPath.AddLine(5, -10, 0, -20);
+                    capPath.AddLine(0, -20, -5, -10);
+                    capPath.AddLine(-5, -10, 0, 0);
+                    return new CustomLineCap(capPath, null);
+
+                default:
+                    throw new Exception("Neplatný typ vztahu!");
+            }
+
+            
+        }
+
+        private Pen GetPen()
+        {
+            Pen pen = new Pen(Color.Black);
+            if (this.relationshipType == RelationshipType.IMPLEMENTATION || this.relationshipType == RelationshipType.DEPENDENCY)
+            {
+                float[] dashValues = { 7, 7 };
+                pen.DashPattern = dashValues;
+            }
+            return pen;
         }
     }
 }
