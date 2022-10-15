@@ -145,14 +145,14 @@ namespace WinFormsApp6
 
             foreach (ClassBox relatedClassBox in relatedClassBoxes)
             {
-                this.DrawRelationship(graphics, pen, relatedClassBox.TopLeft);
+                this.DrawRelationship(graphics, pen, relatedClassBox.GetCenterPoint());
             }
         }
 
 
-        private void DrawRelationship(Graphics graphics, Pen pen, Point relatedClassboxTopLeftPoint)
+        private void DrawRelationship(Graphics graphics, Pen pen, Point relatedClassBoxJoinPoint)
         {
-            graphics.DrawLine(pen, TopLeft, relatedClassboxTopLeftPoint);
+            graphics.DrawLine(pen, this.GetCenterPoint(), relatedClassBoxJoinPoint);
         }
 
         private Point GetPropertyListStartingPoint()
@@ -190,6 +190,51 @@ namespace WinFormsApp6
             }
 
             return this.ClassData.Methods.Count * SystemFonts.DefaultFont.Height + PADDING * 2;
+        }
+
+        public Point GetTopLeftPoint()
+        {
+            return new Point(this.TopLeft.X, this.TopLeft.Y);
+        }
+
+        public Point GetTopRightPoint()
+        {
+            return new Point(this.GetTopLeftPoint().X + this.GetWidth(), this.GetTopLeftPoint().Y);
+        }
+
+        public Point GetBottomLeftPoint()
+        {
+            return new Point(this.GetTopLeftPoint().X, this.GetTopLeftPoint().Y + this.GetHeight());
+        }
+
+        public Point GetBottomRightPoint()
+        {
+            return new Point(this.GetTopLeftPoint().X + this.GetWidth(), this.GetTopLeftPoint().Y + this.GetHeight());
+        }
+
+        public Point GetTopJointPoint()
+        {
+            return new Point(this.GetTopLeftPoint().X + this.GetWidth() / 2, this.GetTopLeftPoint().Y);
+        }
+
+        public Point GetBottomJointPoint()
+        {
+            return new Point(this.GetBottomLeftPoint().X + this.GetWidth() / 2, this.GetBottomLeftPoint().Y);
+        }
+
+        public Point GetRightJointPoint()
+        {
+            return new Point(this.GetTopLeftPoint().X+this.GetWidth(), this.GetTopLeftPoint().Y + this.GetHeight() / 2);
+        }
+
+        public Point GetLeftJointPoint()
+        {
+            return new Point(this.GetTopLeftPoint().X, this.GetTopRightPoint().Y + this.GetHeight() / 2);
+        }
+
+        public Point GetCenterPoint()
+        {
+            return new Point(this.GetTopLeftPoint().X + GetWidth() / 2, this.GetTopLeftPoint().Y+this.GetHeight() / 2);
         }
     }
 }
