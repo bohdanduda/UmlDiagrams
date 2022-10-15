@@ -1,4 +1,6 @@
 ﻿using WinFormsApp6.Data;
+using WinFormsApp6.UMLDiagram;
+using WinFormsApp6.Utils;
 
 namespace WinFormsApp6
 {
@@ -7,7 +9,7 @@ namespace WinFormsApp6
         private const int PADDING = 2;
         private const int HORIZONTAL_EXTRA_PADDING = 10;
         private const int EMPTY_BODY_HEIGHT = 20;
-
+        private RelationshipJoinPointCalculator relationshipJoinPointCalculator = new();
         public Point TopLeft { get; set; }
 
         public ClassData ClassData { get; set; }
@@ -144,16 +146,10 @@ namespace WinFormsApp6
 
             foreach (ClassBox relatedClassBox in relatedClassBoxes)
             {
-                this.DrawRelationship(graphics, pen, relatedClassBox.GetCenterPoint());
+                RelationshipLinePoints relationshipLinePoints = this.relationshipJoinPointCalculator.GetLinePoints(this, relatedClassBox);
+                graphics.DrawLine(pen, relationshipLinePoints.StartPoint, relationshipLinePoints.EndPoint);
             }
         }
-
-
-        private void DrawRelationship(Graphics graphics, Pen pen, Point relatedClassBoxJoinPoint)
-        {
-            graphics.DrawLine(pen, this.GetCenterPoint(), relatedClassBoxJoinPoint);
-        }
-
         private Point GetPropertyListStartingPoint()
         {
             return new Point(this.TopLeft.X + PADDING, this.TopLeft.Y + this.GetTitleHeight() + PADDING);
