@@ -1,9 +1,6 @@
-﻿using System.Runtime.InteropServices;
-using WinFormsApp6.UMLDiagram;
-
-namespace WinFormsApp6.Utils
+﻿namespace WinFormsApp6.UMLDiagram
 {
-    public class RelationshipJoinPointCalculator
+    public class RelationshipLine
     {
         public const string LINE_TYPE_STRAIGHT = "straight";
         public const string LINE_TYPE_ORTHOGONAL = "orthogonal";
@@ -20,33 +17,41 @@ namespace WinFormsApp6.Utils
         private const int TOP_TO_BOTTOM = 10;
         private const int TOP_TO_LEFT = 11;
         private const int TOP_TO_RIGHT = 12;
-        
-        public RelationshipLinePoints GetLinePoints(ClassBox sourceClassBox, ClassBox targetClassBox, string strategy)
+
+        public Point StartPoint { get; set; }
+        public Point EndPoint { get; set; }
+        public string Type { get; set; }
+
+        private int JoinLocation { get; set; }
+
+
+        public RelationshipLine(ClassBox sourceClassBox, ClassBox targetClassBox, string type)
         {
-            switch (strategy)
+            switch (type)
             {
                 case LINE_TYPE_STRAIGHT:
-                    return this.GetStraightLinePoints(sourceClassBox, targetClassBox);
+                    this.CreateStraightLine(sourceClassBox, targetClassBox);
+                    break;
 
                 case LINE_TYPE_ORTHOGONAL:
-                    return this.GetOrthogonalLinePoints(sourceClassBox, targetClassBox);
-
+                    this.CreateOrthogonalLine(sourceClassBox, targetClassBox);
+                    break;
                 default:
                     throw new Exception("Neplatný typ!");
             }
+
+            this.Type = type;
         }
 
-        private RelationshipLinePoints GetStraightLinePoints(ClassBox sourceClassBox, ClassBox targetClassBox)
+        private void CreateStraightLine(ClassBox sourceClassBox, ClassBox targetClassBox)
         {
-            return new RelationshipLinePoints()
-            {
-                StartPoint = sourceClassBox.GetCenterPoint(),
-                EndPoint = targetClassBox.GetCenterPoint()
-            };
+            this.StartPoint = sourceClassBox.GetCenterPoint();
+            this.EndPoint = targetClassBox.GetCenterPoint();
         }
-       
-        private RelationshipLinePoints GetOrthogonalLinePoints(ClassBox sourceClassBox, ClassBox targetClassBox)
+
+        private void CreateOrthogonalLine(ClassBox sourceClassBox, ClassBox targetClassBox)
         {
+
             Dictionary<int, int> joinPointDistances = new();
 
             joinPointDistances.Add(BOTTOM_TO_LEFT, GetOrthogonalDistanceBetweenPoints(
@@ -109,11 +114,11 @@ namespace WinFormsApp6.Utils
                 targetClassBox.GetRightJointPoint()
                 ));
 
-            KeyValuePair<int, int> shortestDistance = new KeyValuePair<int, int>(0, joinPointDistances.Values.Max() +1);
+            KeyValuePair<int, int> shortestDistance = new KeyValuePair<int, int>(0, joinPointDistances.Values.Max() + 1);
 
-            foreach (KeyValuePair <int, int> distance in joinPointDistances)
+            foreach (KeyValuePair<int, int> distance in joinPointDistances)
             {
-                if (distance.Value<shortestDistance.Value)
+                if (distance.Value < shortestDistance.Value)
                 {
                     shortestDistance = distance;
                 }
@@ -122,105 +127,81 @@ namespace WinFormsApp6.Utils
             switch (shortestDistance.Key)
             {
                 case BOTTOM_TO_LEFT:
-
-                    return new RelationshipLinePoints()
-                    {
-                        StartPoint = sourceClassBox.GetBottomJointPoint(),
-                        EndPoint = targetClassBox.GetLeftJointPoint()
-                    };
+                    this.StartPoint = sourceClassBox.GetBottomJointPoint();
+                    this.EndPoint = targetClassBox.GetLeftJointPoint();
+                    this.JoinLocation = BOTTOM_TO_LEFT;
+                    break;
 
                 case BOTTOM_TO_RIGHT:
+                    this.StartPoint = sourceClassBox.GetBottomJointPoint();
+                    this.EndPoint = targetClassBox.GetRightJointPoint();
+                    this.JoinLocation = BOTTOM_TO_RIGHT;
+                    break;
 
-                    return new RelationshipLinePoints()
-                    {
-                        StartPoint = sourceClassBox.GetBottomJointPoint(),
-                        EndPoint = targetClassBox.GetRightJointPoint()
-                    };
-                
                 case BOTTOM_TO_TOP:
-
-                    return new RelationshipLinePoints()
-                    {
-                        StartPoint = sourceClassBox.GetBottomJointPoint(),
-                        EndPoint = targetClassBox.GetTopJointPoint()
-                    };
+                    this.StartPoint = sourceClassBox.GetBottomJointPoint();
+                    this.EndPoint = targetClassBox.GetTopJointPoint();
+                    this.JoinLocation = BOTTOM_TO_TOP;
+                    break;
 
                 case LEFT_TO_BOTTOM:
+                    this.StartPoint = sourceClassBox.GetLeftJointPoint();
+                    this.EndPoint = targetClassBox.GetBottomJointPoint();
+                    this.JoinLocation = LEFT_TO_BOTTOM;
+                    break;
 
-                    return new RelationshipLinePoints()
-                    {
-                        StartPoint = sourceClassBox.GetLeftJointPoint(),
-                        EndPoint = targetClassBox.GetBottomJointPoint()
-                    };
-                
                 case LEFT_TO_RIGHT:
-
-                    return new RelationshipLinePoints()
-                    {
-                        StartPoint = sourceClassBox.GetLeftJointPoint(),
-                        EndPoint = targetClassBox.GetRightJointPoint()
-                    };
+                    this.StartPoint = sourceClassBox.GetLeftJointPoint();
+                    this.EndPoint = targetClassBox.GetRightJointPoint();
+                    this.JoinLocation = LEFT_TO_RIGHT;
+                    break;
 
                 case LEFT_TO_TOP:
-
-                    return new RelationshipLinePoints()
-                    {
-                        StartPoint = sourceClassBox.GetLeftJointPoint(),
-                        EndPoint = targetClassBox.GetTopJointPoint()
-                    };
+                    this.StartPoint = sourceClassBox.GetLeftJointPoint();
+                    this.EndPoint = targetClassBox.GetTopJointPoint();
+                    this.JoinLocation = LEFT_TO_TOP;
+                    break;
 
                 case RIGHT_TO_BOTTOM:
-
-                    return new RelationshipLinePoints()
-                    {
-                        StartPoint = sourceClassBox.GetRightJointPoint(),
-                        EndPoint = targetClassBox.GetBottomJointPoint()
-                    };
+                    this.StartPoint = sourceClassBox.GetRightJointPoint();
+                    this.EndPoint = targetClassBox.GetBottomJointPoint();
+                    this.JoinLocation = RIGHT_TO_BOTTOM;
+                    break;
 
                 case RIGHT_TO_LEFT:
-
-                    return new RelationshipLinePoints()
-                    {
-                        StartPoint = sourceClassBox.GetRightJointPoint(),
-                        EndPoint = targetClassBox.GetLeftJointPoint()
-                    };
+                    this.StartPoint = sourceClassBox.GetRightJointPoint();
+                    this.EndPoint = targetClassBox.GetLeftJointPoint(); ;
+                    this.JoinLocation = RIGHT_TO_LEFT;
+                    break;
 
                 case RIGHT_TO_TOP:
-
-                    return new RelationshipLinePoints()
-                    {
-                        StartPoint = sourceClassBox.GetRightJointPoint(),
-                        EndPoint = targetClassBox.GetTopJointPoint()
-                    };
+                    this.StartPoint = sourceClassBox.GetRightJointPoint();
+                    this.EndPoint = targetClassBox.GetTopJointPoint();
+                    this.JoinLocation = RIGHT_TO_TOP;
+                    break;
 
                 case TOP_TO_BOTTOM:
-                    return new RelationshipLinePoints()
-                    {
-                        StartPoint = sourceClassBox.GetTopJointPoint(),
-                        EndPoint = targetClassBox.GetBottomJointPoint()
-                    };
-
+                    this.StartPoint = sourceClassBox.GetTopJointPoint();
+                    this.EndPoint = targetClassBox.GetBottomJointPoint();
+                    this.JoinLocation = TOP_TO_BOTTOM;
+                    break;
 
                 case TOP_TO_LEFT:
-                    return new RelationshipLinePoints()
-                    {
-                        StartPoint = sourceClassBox.GetTopJointPoint(),
-                        EndPoint = targetClassBox.GetLeftJointPoint()
-                    };
-
+                    this.StartPoint = sourceClassBox.GetTopJointPoint();
+                    this.EndPoint = targetClassBox.GetLeftJointPoint();
+                    this.JoinLocation = TOP_TO_LEFT;
+                    break;
 
                 case TOP_TO_RIGHT:
-                    return new RelationshipLinePoints()
-                    {
-                        StartPoint = sourceClassBox.GetTopJointPoint(),
-                        EndPoint = targetClassBox.GetRightJointPoint()
-                    };
+                    this.StartPoint = sourceClassBox.GetTopJointPoint();
+                    this.EndPoint = targetClassBox.GetRightJointPoint();
+                    this.JoinLocation = TOP_TO_RIGHT;
+                    break;
 
                 default:
                     throw new Exception("Neplatná kombinace!");
             }
 
-            
         }
 
         private int GetOrthogonalDistanceBetweenPoints(Point pointA, Point pointB)

@@ -9,7 +9,6 @@ namespace WinFormsApp6
         private const int PADDING = 2;
         private const int HORIZONTAL_EXTRA_PADDING = 10;
         private const int EMPTY_BODY_HEIGHT = 20;
-        private RelationshipJoinPointCalculator relationshipJoinPointCalculator = new();
         public Point TopLeft { get; set; }
 
         public ClassData ClassData { get; set; }
@@ -146,10 +145,11 @@ namespace WinFormsApp6
 
             foreach (ClassBox relatedClassBox in relatedClassBoxes)
             {
-                RelationshipLinePoints relationshipLinePoints = this.relationshipJoinPointCalculator.GetLinePoints(this, relatedClassBox, RelationshipJoinPointCalculator.LINE_TYPE_ORTHOGONAL);
-                graphics.DrawLine(pen, relationshipLinePoints.StartPoint, relationshipLinePoints.EndPoint);
+                RelationshipLine relationshipLine = new RelationshipLine(this, relatedClassBox, RelationshipLine.LINE_TYPE_ORTHOGONAL);
+                graphics.DrawLine(pen, relationshipLine.StartPoint, relationshipLine.EndPoint);
             }
         }
+
         private Point GetPropertyListStartingPoint()
         {
             return new Point(this.TopLeft.X + PADDING, this.TopLeft.Y + this.GetTitleHeight() + PADDING);
