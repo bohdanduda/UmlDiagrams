@@ -146,7 +146,7 @@ namespace WinFormsApp6
 
             foreach (ClassBox relatedClassBox in relatedClassBoxes)
             {
-                RelationshipLinePoints relationshipLinePoints = this.relationshipJoinPointCalculator.GetLinePoints(this, relatedClassBox, RelationshipJoinPointCalculator.LINE_TYPE_STRAIGHT);
+                RelationshipLinePoints relationshipLinePoints = this.relationshipJoinPointCalculator.GetLinePoints(this, relatedClassBox, RelationshipJoinPointCalculator.LINE_TYPE_ORTHOGONAL);
                 graphics.DrawLine(pen, relationshipLinePoints.StartPoint, relationshipLinePoints.EndPoint);
             }
         }
