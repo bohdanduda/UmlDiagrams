@@ -74,6 +74,8 @@ namespace WinFormsApp6
                 ClassData.Relationships.Add(relationship);
             }
 
+            this.ClassData.IsInterface = checkBox_Interface.Checked;
+
             mainForm.Refresh();
             Close();
         }
@@ -204,18 +206,6 @@ namespace WinFormsApp6
             {
                 MethodEditForm methodEditForm = new MethodEditForm(this.listBox_methods, this.GetMethodNames(), false);
                 methodEditForm.ShowDialog();
-            }
-        }
-
-        private void checkBox_Interface_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.checkBox_Interface.Checked)
-            {
-                this.ClassData.IsInterface = true;
-            }
-            else
-            {
-                this.ClassData.IsInterface = false;
             }
         }
 

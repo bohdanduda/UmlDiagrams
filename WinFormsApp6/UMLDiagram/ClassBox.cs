@@ -64,11 +64,6 @@ namespace WinFormsApp6
             graphics.FillRectangle(Brushes.WhiteSmoke, rectangle);
             graphics.DrawRectangle(pen, rectangle);
 
-            if (ClassData.IsInterface)
-            {
-                this.DrawInterface(graphics, pen);
-            }
-
             pen.Width = 1;
             graphics.DrawLine(
                 pen,
@@ -100,11 +95,23 @@ namespace WinFormsApp6
 
         private void DrawTitle(Graphics graphics)
         {
+            if (ClassData.IsInterface)
+            {
+                graphics.DrawString(
+                ":interface",
+                new(SystemFonts.DefaultFont, FontStyle.Italic),
+                Brushes.Black,
+                this.TopLeft.X + PADDING,
+                this.TopLeft.Y + PADDING
+                );
+            }
+
             graphics.DrawString(
             this.ClassData.ClassName,
             new(SystemFonts.DefaultFont, FontStyle.Bold),
             Brushes.Black,
-            this.TopLeft.X + PADDING, this.TopLeft.Y + PADDING
+            this.TopLeft.X + PADDING,
+            this.TopLeft.Y + PADDING + (ClassData.IsInterface ? SystemFonts.DefaultFont.Height : +0)
             );
         }
 
@@ -132,21 +139,8 @@ namespace WinFormsApp6
             }
         }
 
-        private void DrawInterface(Graphics graphics, Pen pen)
-        {
-            Rectangle interfaceRectangle = new Rectangle(this.TopLeft.X, this.TopLeft.Y - 15, this.GetWidth(), 15);
-            Font interfaceFont = new Font("Arial", 13, FontStyle.Regular, GraphicsUnit.Pixel);
-            graphics.DrawRectangle(pen, interfaceRectangle);
-            graphics.DrawString(
-                ":interface",
-                interfaceFont,
-                Brushes.Black,
-                this.TopLeft.X + 30,
-                this.TopLeft.Y - 15);
-        }
-
         private void DrawRelationships(Graphics graphics, List<ClassBox> relatedClassBoxes)
-        { 
+        {
             Pen pen = new Pen(Color.Black);
 
             foreach (ClassBox relatedClassBox in relatedClassBoxes)
@@ -175,7 +169,7 @@ namespace WinFormsApp6
 
         private int GetTitleHeight()
         {
-            return SystemFonts.DefaultFont.Height + PADDING * 2;
+            return SystemFonts.DefaultFont.Height + PADDING * 2 + (ClassData.IsInterface ? SystemFonts.DefaultFont.Height : 0);
         }
 
         private int GetPropertiesSectionHeight()

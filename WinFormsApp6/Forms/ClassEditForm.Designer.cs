@@ -194,7 +194,6 @@
             this.checkBox_Interface.TabIndex = 24;
             this.checkBox_Interface.Text = "Rozhraní";
             this.checkBox_Interface.UseVisualStyleBackColor = true;
-            this.checkBox_Interface.CheckedChanged += new System.EventHandler(this.checkBox_Interface_CheckedChanged);
             // 
             // btn_ChangeRelationship
             // 
