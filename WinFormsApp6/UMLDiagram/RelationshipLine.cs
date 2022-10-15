@@ -1,4 +1,7 @@
-﻿namespace WinFormsApp6.UMLDiagram
+﻿using System.Drawing.Drawing2D;
+using WinFormsApp6.Data;
+
+namespace WinFormsApp6.UMLDiagram
 {
     public class RelationshipLine
     {
@@ -20,14 +23,15 @@
 
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
-        public string Type { get; set; }
+        public string LineType { get; set; }
+        private string relationshipType { get; set; }
 
         private int joinType { get; set; }
 
-        
-        public RelationshipLine(ClassBox sourceClassBox, ClassBox targetClassBox, string type)
+
+        public RelationshipLine(ClassBox sourceClassBox, ClassBox targetClassBox, string lineType)
         {
-            switch (type)
+            switch (lineType)
             {
                 case LINE_TYPE_STRAIGHT:
                     this.CreateStraightLine(sourceClassBox, targetClassBox);
@@ -40,14 +44,21 @@
                     throw new Exception("Neplatný typ!");
             }
 
-            this.Type = type;
+            this.relationshipType = this.GetRelationshipTypeForClass(sourceClassBox.ClassData.Relationships, targetClassBox.ClassData.ClassName);
+            this.LineType = lineType;
         }
 
         public void Draw(Graphics graphics)
         {
             Pen pen = new Pen(Color.Black);
-
-            switch (this.Type)
+            if (this.relationshipType==RelationshipType.IMPLEMENTATION || this.relationshipType==RelationshipType.DEPENDENCY)
+            {
+                float[] dashValues = { 7, 7 };
+                pen.DashPattern = dashValues;
+            }
+            
+            
+            switch (this.LineType)
             {
                 case LINE_TYPE_STRAIGHT:
                     this.DrawStraightLine(graphics, pen);
@@ -86,11 +97,11 @@
 
                 return;
             }
-            
+
             if (this.IsJointTypeHorizontal())
             {
                 int horizontalDistance = this.EndPoint.X - this.StartPoint.X;
-                Point breakPoint1 = new(this.StartPoint.X + (int)(horizontalDistance/2), this.StartPoint.Y);
+                Point breakPoint1 = new(this.StartPoint.X + (int)(horizontalDistance / 2), this.StartPoint.Y);
                 Point breakPoint2 = new(breakPoint1.X, this.EndPoint.Y);
 
                 graphics.DrawLine(pen, StartPoint, breakPoint1);
@@ -282,7 +293,7 @@
 
         private bool IsJoinTypeRectangularVertical()
         {
-            int[] rectangularTypes = { 
+            int[] rectangularTypes = {
             BOTTOM_TO_LEFT,
             BOTTOM_TO_RIGHT,
             TOP_TO_LEFT,
@@ -294,7 +305,7 @@
 
         private bool IsJoinTypeRectangularHorizontal()
         {
-            int[] rectangularTypes = { 
+            int[] rectangularTypes = {
             LEFT_TO_BOTTOM,
             LEFT_TO_TOP,
             RIGHT_TO_BOTTOM,
@@ -320,6 +331,19 @@
                 RIGHT_TO_LEFT
             };
             return verticalTypes.Contains(this.joinType);
+        }
+
+        private string GetRelationshipTypeForClass(List<ClassRelationship> relationships, string relatedClassName)
+        {
+            foreach (ClassRelationship relationship in relationships)
+            {
+                if (relationship.RelatedClassName == relatedClassName)
+                {
+                    return relationship.Type;
+                }
+            }
+
+            throw new Exception("Vztah pro třídu neexistuje");
         }
     }
 }
