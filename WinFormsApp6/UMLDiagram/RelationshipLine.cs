@@ -23,6 +23,9 @@ namespace WinFormsApp6.UMLDiagram
         private const int TOP_TO_LEFT = 11;
         private const int TOP_TO_RIGHT = 12;
 
+        private const int CLASSBOXES_TOO_CLOSE_THRESHOLD = 50;
+        private const int CLASSBOXES_TOO_CLOSE_PENALTY = 50;
+
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
         public string LineType { get; set; }
@@ -290,7 +293,16 @@ namespace WinFormsApp6.UMLDiagram
 
         private int GetOrthogonalDistanceBetweenPoints(Point pointA, Point pointB)
         {
-            return Math.Abs(pointA.X - pointB.X) + Math.Abs(pointA.Y - pointB.Y);
+            int xDifference = Math.Abs(pointA.X - pointB.X);
+            int yDifference = Math.Abs(pointA.Y - pointB.Y);
+            int classBoxesAreTooClosePenalty = 0;
+
+            if (xDifference < CLASSBOXES_TOO_CLOSE_THRESHOLD || yDifference < CLASSBOXES_TOO_CLOSE_THRESHOLD)
+            {
+                classBoxesAreTooClosePenalty = CLASSBOXES_TOO_CLOSE_PENALTY;
+            }
+
+            return xDifference + yDifference + classBoxesAreTooClosePenalty;
         }
 
         private bool IsJoinTypeRectangularVertical()
@@ -377,10 +389,10 @@ namespace WinFormsApp6.UMLDiagram
                     return new CustomLineCap(null, capPath);
 
                 case RelationshipType.AGGREGATION:
-                    capPath.AddLine(0, 0, 10, -15);
-                    capPath.AddLine(10, -15, 0, -30);
-                    capPath.AddLine(0, -30, -10, -15);
-                    capPath.AddLine(-10, -15, 0, 0);
+                    capPath.AddLine(0, 0, 5, -10);
+                    capPath.AddLine(5, -10, 0, -20);
+                    capPath.AddLine(0, -20, -5, -10);
+                    capPath.AddLine(-5, -10, 0, 0);
                     return new CustomLineCap(null, capPath);
 
                 case RelationshipType.COMPOSITION:

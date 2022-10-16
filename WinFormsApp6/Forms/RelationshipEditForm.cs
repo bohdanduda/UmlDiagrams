@@ -41,7 +41,10 @@ namespace WinFormsApp6.Forms
 
             foreach (string className in classNames)
             {
-                this.comboBox_ClassName.Items.Add(className);
+                if (!classesWithExistingRelationship.Contains(className))
+                {
+                    this.comboBox_ClassName.Items.Add(className);
+                }
             }
 
             if (!addingNewRelationship)
