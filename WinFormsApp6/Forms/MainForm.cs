@@ -81,5 +81,17 @@ namespace WinFormsApp6
                 this.Diagram.ClassBoxes.Remove(Diagram.SelectedClassBox);
             }
         }
+
+        private void btn_SavePicture_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog()
+            {
+                Title = "Uložení diagramu jako obrázku",
+                Filter = "formát JPG|*.jpg|formát BMP|*.bmp|formát GIF|*.gif|formát PNG|*.png"
+            };
+            saveFileDialog.ShowDialog();
+
+            this.pictureBox1.Image.Save(saveFileDialog.FileName.ToString(), System.Drawing.Imaging.ImageFormat.Bmp);
+        }
     }
 }
