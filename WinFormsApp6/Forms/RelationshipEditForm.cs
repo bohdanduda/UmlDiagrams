@@ -26,6 +26,27 @@ namespace WinFormsApp6.Forms
             this.RelationshipListBox = relationshipListBox;
             this.AddingNewRelationship = addingNewRelationship;
 
+            List<string> classesWithExistingRelationship = new();
+
+            foreach (ClassRelationship relationship in this.RelationshipListBox.Items)
+            {
+                classesWithExistingRelationship.Add(relationship.RelatedClassName);
+            }
+
+            if (!addingNewRelationship)
+            {
+                ClassRelationship editedRelationship = this.RelationshipListBox.SelectedItem as ClassRelationship;
+                classesWithExistingRelationship.Remove(editedRelationship.RelatedClassName);
+            }
+
+            foreach (string className in classNames)
+            {
+                if (!classesWithExistingRelationship.Contains(className))
+                {
+                    this.comboBox_ClassName.Items.Add(className);
+                }
+            }
+
             if (!addingNewRelationship)
             {
                 this.Text = "Upravení vztahu";
@@ -40,22 +61,41 @@ namespace WinFormsApp6.Forms
                 this.Text = "Přidání vztahu";
                 this.Update();
             }
-
-            foreach (string className in classNames)
-            {
-                this.comboBox_ClassName.Items.Add(className);
-            }
         }
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            this.RelationshipListBox.Items.Add(new ClassRelationship
+
+            if (comboBox_Relationship.SelectedItem == null)
             {
-                Type = this.comboBox_Relationship.Text,
-                RelatedClassName = this.comboBox_ClassName.Text
-            });
+                MessageBox.Show("Je třeba vybrat typ vztahu!");
+                return;
+            }
 
+            if (comboBox_ClassName.SelectedItem == null)
+            {
+                MessageBox.Show("Je třeba vybrat cílovou třídu!");
+                return;
+            }
 
+            if (this.AddingNewRelationship)
+            {
+                this.RelationshipListBox.Items.Add(new ClassRelationship
+                {
+                    Type = this.comboBox_Relationship.Text,
+                    RelatedClassName = this.comboBox_ClassName.Text
+                });
+                 
+                this.Close();
+
+                return;
+            }
+
+            ClassRelationship selectedRelationship = this.RelationshipListBox.SelectedItem as ClassRelationship;
+            selectedRelationship.Type = this.comboBox_Relationship.Text;
+            selectedRelationship.RelatedClassName = this.comboBox_ClassName.Text;
+
+            this.RefreshRelationshipListbox();
             this.Close();
         }
 
@@ -64,5 +104,20 @@ namespace WinFormsApp6.Forms
             this.Close();
         }
 
+        private void RefreshRelationshipListbox()
+        {
+            List<ClassRelationship> relationships = new List<ClassRelationship>();
+            foreach (ClassRelationship relationship in this.RelationshipListBox.Items)
+            {
+                relationships.Add(relationship);
+            }
+
+            this.RelationshipListBox.Items.Clear();
+
+            foreach (ClassRelationship relationship in relationships)
+            {
+                this.RelationshipListBox.Items.Add(relationship);
+            }
+        }
     }
 }

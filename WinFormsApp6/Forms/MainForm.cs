@@ -1,3 +1,6 @@
+using System;
+using System.Text.Json;
+using WinFormsApp6.Forms;
 using WinFormsApp6.UMLDiagram;
 
 namespace WinFormsApp6
@@ -79,6 +82,60 @@ namespace WinFormsApp6
             if (this.Diagram.SelectedClassBox != null)
             {
                 this.Diagram.ClassBoxes.Remove(Diagram.SelectedClassBox);
+            }
+        }
+
+        private void btn_SavePicture_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog()
+            {
+                Title = "Uložení diagramu jako obrázku",
+                Filter = "formát JPG|*.jpg|formát BMP|*.bmp|formát GIF|*.gif|formát PNG|*.png"
+            };
+            saveFileDialog.ShowDialog();
+
+            this.pictureBox1.Image.Save(saveFileDialog.FileName.ToString(), System.Drawing.Imaging.ImageFormat.Bmp);
+        }
+
+        private void btn_SaveDiagram_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog()
+            {
+                Title = "Uložení diagramu do souboru JSON",
+                Filter = "soubor JSON|*.json"
+            };
+            saveFileDialog.ShowDialog();
+
+            StreamWriter streamWriter = new StreamWriter(saveFileDialog.FileName.ToString());
+
+            string jsonString = JsonSerializer.Serialize(this.Diagram);
+            streamWriter.WriteLine(jsonString);
+            streamWriter.Close();
+        }
+
+        private void btn_LoadDiagram_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog()
+            {
+                Title = "Naètení diagramu ze souboru JSON",
+                Filter = "soubor JSON|*.json"
+            };
+            openFileDialog.ShowDialog();
+
+            StreamReader reader = new StreamReader(openFileDialog.OpenFile());
+
+            try
+            {
+                Diagram? parsedDiagram = JsonSerializer.Deserialize<Diagram>(reader.ReadToEnd());
+                if (parsedDiagram == null)
+                {
+                    throw new Exception("Naètený diagram je prázdný");
+                }
+                this.Diagram = parsedDiagram;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"Nepodaøilo se naèíst diagram ze souboru.{Environment.NewLine} Chyba: {exception}");
             }
         }
     }

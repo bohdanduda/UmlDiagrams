@@ -33,6 +33,9 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btn_add_class = new System.Windows.Forms.Button();
             this.btn_removeClass = new System.Windows.Forms.Button();
+            this.btn_SavePicture = new System.Windows.Forms.Button();
+            this.btn_SaveDiagram = new System.Windows.Forms.Button();
+            this.btn_LoadDiagram = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,11 +79,44 @@
             this.btn_removeClass.UseVisualStyleBackColor = true;
             this.btn_removeClass.Click += new System.EventHandler(this.btn_removeClass_Click);
             // 
+            // btn_SavePicture
+            // 
+            this.btn_SavePicture.Location = new System.Drawing.Point(641, 426);
+            this.btn_SavePicture.Name = "btn_SavePicture";
+            this.btn_SavePicture.Size = new System.Drawing.Size(147, 23);
+            this.btn_SavePicture.TabIndex = 3;
+            this.btn_SavePicture.Text = "VYGENEROVAT OBRÁZEK";
+            this.btn_SavePicture.UseVisualStyleBackColor = true;
+            this.btn_SavePicture.Click += new System.EventHandler(this.btn_SavePicture_Click);
+            // 
+            // btn_SaveDiagram
+            // 
+            this.btn_SaveDiagram.Location = new System.Drawing.Point(337, 426);
+            this.btn_SaveDiagram.Name = "btn_SaveDiagram";
+            this.btn_SaveDiagram.Size = new System.Drawing.Size(75, 23);
+            this.btn_SaveDiagram.TabIndex = 4;
+            this.btn_SaveDiagram.Text = "ULOŽIT";
+            this.btn_SaveDiagram.UseVisualStyleBackColor = true;
+            this.btn_SaveDiagram.Click += new System.EventHandler(this.btn_SaveDiagram_Click);
+            // 
+            // btn_LoadDiagram
+            // 
+            this.btn_LoadDiagram.Location = new System.Drawing.Point(418, 426);
+            this.btn_LoadDiagram.Name = "btn_LoadDiagram";
+            this.btn_LoadDiagram.Size = new System.Drawing.Size(75, 23);
+            this.btn_LoadDiagram.TabIndex = 5;
+            this.btn_LoadDiagram.Text = "NAČÍST";
+            this.btn_LoadDiagram.UseVisualStyleBackColor = true;
+            this.btn_LoadDiagram.Click += new System.EventHandler(this.btn_LoadDiagram_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 459);
+            this.Controls.Add(this.btn_LoadDiagram);
+            this.Controls.Add(this.btn_SaveDiagram);
+            this.Controls.Add(this.btn_SavePicture);
             this.Controls.Add(this.btn_removeClass);
             this.Controls.Add(this.btn_add_class);
             this.Controls.Add(this.pictureBox1);
@@ -97,5 +133,8 @@
         private System.Windows.Forms.Timer timer1;
         private Button btn_add_class;
         private Button btn_removeClass;
+        private Button btn_SavePicture;
+        private Button btn_SaveDiagram;
+        private Button btn_LoadDiagram;
     }
 }
