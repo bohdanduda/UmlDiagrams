@@ -2,12 +2,16 @@ using System;
 using System.Text.Json;
 using WinFormsApp6.Forms;
 using WinFormsApp6.UMLDiagram;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace WinFormsApp6
 {
     public partial class MainForm : Form
     {
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Diagram Diagram { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ClassBoxMover ClassBoxMover { get; set; }
 
         public MainForm()
@@ -92,7 +96,11 @@ namespace WinFormsApp6
                 Title = "Uložení diagramu jako obrázku",
                 Filter = "formát JPG|*.jpg|formát BMP|*.bmp|formát GIF|*.gif|formát PNG|*.png"
             };
-            saveFileDialog.ShowDialog();
+
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
 
             this.pictureBox1.Image.Save(saveFileDialog.FileName.ToString(), System.Drawing.Imaging.ImageFormat.Bmp);
         }
@@ -104,7 +112,11 @@ namespace WinFormsApp6
                 Title = "Uložení diagramu do souboru JSON",
                 Filter = "soubor JSON|*.json"
             };
-            saveFileDialog.ShowDialog();
+
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
 
             StreamWriter streamWriter = new StreamWriter(saveFileDialog.FileName.ToString());
 
@@ -120,7 +132,11 @@ namespace WinFormsApp6
                 Title = "Naètení diagramu ze souboru JSON",
                 Filter = "soubor JSON|*.json"
             };
-            openFileDialog.ShowDialog();
+
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
 
             StreamReader reader = new StreamReader(openFileDialog.OpenFile());
 
