@@ -28,73 +28,74 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_Path = new System.Windows.Forms.Label();
-            this.btn_OpenExplorer = new System.Windows.Forms.Button();
-            this.txtBox_PathName = new System.Windows.Forms.TextBox();
-            this.btn_Save = new System.Windows.Forms.Button();
-            this.btn_Cancel = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            lbl_Path = new Label();
+            btn_OpenExplorer = new Button();
+            txtBox_PathName = new TextBox();
+            btn_Save = new Button();
+            btn_Cancel = new Button();
+            SuspendLayout();
             // 
             // lbl_Path
             // 
-            this.lbl_Path.AutoSize = true;
-            this.lbl_Path.Location = new System.Drawing.Point(14, 16);
-            this.lbl_Path.Name = "lbl_Path";
-            this.lbl_Path.Size = new System.Drawing.Size(39, 15);
-            this.lbl_Path.TabIndex = 2;
-            this.lbl_Path.Text = "Cesta:";
+            lbl_Path.AutoSize = true;
+            lbl_Path.Location = new Point(14, 16);
+            lbl_Path.Name = "lbl_Path";
+            lbl_Path.Size = new Size(39, 15);
+            lbl_Path.TabIndex = 2;
+            lbl_Path.Text = "Cesta:";
             // 
             // btn_OpenExplorer
             // 
-            this.btn_OpenExplorer.Location = new System.Drawing.Point(440, 12);
-            this.btn_OpenExplorer.Name = "btn_OpenExplorer";
-            this.btn_OpenExplorer.Size = new System.Drawing.Size(75, 23);
-            this.btn_OpenExplorer.TabIndex = 3;
-            this.btn_OpenExplorer.Text = "Otevřít";
-            this.btn_OpenExplorer.UseVisualStyleBackColor = true;
-            this.btn_OpenExplorer.Click += new System.EventHandler(this.btn_OpenExplorer_Click);
+            btn_OpenExplorer.Location = new Point(440, 12);
+            btn_OpenExplorer.Name = "btn_OpenExplorer";
+            btn_OpenExplorer.Size = new Size(75, 23);
+            btn_OpenExplorer.TabIndex = 3;
+            btn_OpenExplorer.Text = "Otevřít";
+            btn_OpenExplorer.UseVisualStyleBackColor = true;
+            btn_OpenExplorer.Click += btn_OpenExplorer_Click;
             // 
             // txtBox_PathName
             // 
-            this.txtBox_PathName.Location = new System.Drawing.Point(59, 12);
-            this.txtBox_PathName.Name = "txtBox_PathName";
-            this.txtBox_PathName.Size = new System.Drawing.Size(375, 23);
-            this.txtBox_PathName.TabIndex = 4;
+            txtBox_PathName.Location = new Point(59, 12);
+            txtBox_PathName.Name = "txtBox_PathName";
+            txtBox_PathName.Size = new Size(375, 23);
+            txtBox_PathName.TabIndex = 4;
             // 
             // btn_Save
             // 
-            this.btn_Save.Location = new System.Drawing.Point(171, 59);
-            this.btn_Save.Name = "btn_Save";
-            this.btn_Save.Size = new System.Drawing.Size(75, 23);
-            this.btn_Save.TabIndex = 5;
-            this.btn_Save.Text = "ULOŽIT";
-            this.btn_Save.UseVisualStyleBackColor = true;
-            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+            btn_Save.Location = new Point(171, 59);
+            btn_Save.Name = "btn_Save";
+            btn_Save.Size = new Size(75, 23);
+            btn_Save.TabIndex = 5;
+            btn_Save.Text = "ULOŽIT";
+            btn_Save.UseVisualStyleBackColor = true;
+            btn_Save.Click += btn_Save_Click;
             // 
             // btn_Cancel
             // 
-            this.btn_Cancel.Location = new System.Drawing.Point(252, 59);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(75, 23);
-            this.btn_Cancel.TabIndex = 6;
-            this.btn_Cancel.Text = "STORNO";
-            this.btn_Cancel.UseVisualStyleBackColor = true;
-            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            btn_Cancel.Location = new Point(252, 59);
+            btn_Cancel.Name = "btn_Cancel";
+            btn_Cancel.Size = new Size(75, 23);
+            btn_Cancel.TabIndex = 6;
+            btn_Cancel.Text = "STORNO";
+            btn_Cancel.UseVisualStyleBackColor = true;
+            btn_Cancel.Click += btn_Cancel_Click;
             // 
             // DiagramSaveForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 94);
-            this.Controls.Add(this.btn_Cancel);
-            this.Controls.Add(this.btn_Save);
-            this.Controls.Add(this.txtBox_PathName);
-            this.Controls.Add(this.btn_OpenExplorer);
-            this.Controls.Add(this.lbl_Path);
-            this.Name = "DiagramSaveForm";
-            this.Text = "DiagramSaveForm";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(528, 94);
+            Controls.Add(btn_Cancel);
+            Controls.Add(btn_Save);
+            Controls.Add(txtBox_PathName);
+            Controls.Add(btn_OpenExplorer);
+            Controls.Add(lbl_Path);
+            Name = "DiagramSaveForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "DiagramSaveForm";
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

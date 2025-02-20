@@ -28,114 +28,106 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_cancel = new System.Windows.Forms.Button();
-            this.btn_save = new System.Windows.Forms.Button();
-            this.comboBox_accessModifier = new System.Windows.Forms.ComboBox();
-            this.comboBox_dataType = new System.Windows.Forms.ComboBox();
-            this.txtBox_methodName = new System.Windows.Forms.TextBox();
-            this.lbl_accessModifier = new System.Windows.Forms.Label();
-            this.lbl_datatype = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            btn_cancel = new Button();
+            btn_save = new Button();
+            comboBox_accessModifier = new ComboBox();
+            comboBox_dataType = new ComboBox();
+            txtBox_methodName = new TextBox();
+            lbl_accessModifier = new Label();
+            lbl_datatype = new Label();
+            label1 = new Label();
+            SuspendLayout();
             // 
             // btn_cancel
             // 
-            this.btn_cancel.Location = new System.Drawing.Point(230, 92);
-            this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(75, 23);
-            this.btn_cancel.TabIndex = 0;
-            this.btn_cancel.Text = "STORNO";
-            this.btn_cancel.UseVisualStyleBackColor = true;
-            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
+            btn_cancel.Location = new Point(230, 92);
+            btn_cancel.Name = "btn_cancel";
+            btn_cancel.Size = new Size(75, 23);
+            btn_cancel.TabIndex = 5;
+            btn_cancel.Text = "STORNO";
+            btn_cancel.UseVisualStyleBackColor = true;
+            btn_cancel.Click += btn_cancel_Click;
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(116, 92);
-            this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(75, 23);
-            this.btn_save.TabIndex = 1;
-            this.btn_save.Text = "ULOŽIT";
-            this.btn_save.UseVisualStyleBackColor = true;
-            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            btn_save.Location = new Point(116, 92);
+            btn_save.Name = "btn_save";
+            btn_save.Size = new Size(75, 23);
+            btn_save.TabIndex = 4;
+            btn_save.Text = "ULOŽIT";
+            btn_save.UseVisualStyleBackColor = true;
+            btn_save.Click += btn_save_Click;
             // 
             // comboBox_accessModifier
             // 
-            this.comboBox_accessModifier.FormattingEnabled = true;
-            this.comboBox_accessModifier.Items.AddRange(new object[] {
-            "public",
-            "protected",
-            "private"});
-            this.comboBox_accessModifier.Location = new System.Drawing.Point(12, 48);
-            this.comboBox_accessModifier.Name = "comboBox_accessModifier";
-            this.comboBox_accessModifier.Size = new System.Drawing.Size(121, 23);
-            this.comboBox_accessModifier.TabIndex = 2;
+            comboBox_accessModifier.FormattingEnabled = true;
+            comboBox_accessModifier.Items.AddRange(new object[] { "private", "protected", "public" });
+            comboBox_accessModifier.Location = new Point(12, 48);
+            comboBox_accessModifier.Name = "comboBox_accessModifier";
+            comboBox_accessModifier.Size = new Size(121, 23);
+            comboBox_accessModifier.TabIndex = 1;
             // 
             // comboBox_dataType
             // 
-            this.comboBox_dataType.FormattingEnabled = true;
-            this.comboBox_dataType.Items.AddRange(new object[] {
-            "void",
-            "int",
-            "string",
-            "double",
-            "bool",
-            "char"});
-            this.comboBox_dataType.Location = new System.Drawing.Point(139, 48);
-            this.comboBox_dataType.Name = "comboBox_dataType";
-            this.comboBox_dataType.Size = new System.Drawing.Size(121, 23);
-            this.comboBox_dataType.TabIndex = 3;
+            comboBox_dataType.FormattingEnabled = true;
+            comboBox_dataType.Items.AddRange(new object[] { "void", "int", "string", "double", "bool", "char" });
+            comboBox_dataType.Location = new Point(139, 48);
+            comboBox_dataType.Name = "comboBox_dataType";
+            comboBox_dataType.Size = new Size(121, 23);
+            comboBox_dataType.TabIndex = 2;
             // 
             // txtBox_methodName
             // 
-            this.txtBox_methodName.Location = new System.Drawing.Point(275, 48);
-            this.txtBox_methodName.Name = "txtBox_methodName";
-            this.txtBox_methodName.Size = new System.Drawing.Size(115, 23);
-            this.txtBox_methodName.TabIndex = 4;
+            txtBox_methodName.Location = new Point(275, 48);
+            txtBox_methodName.Name = "txtBox_methodName";
+            txtBox_methodName.Size = new Size(115, 23);
+            txtBox_methodName.TabIndex = 3;
             // 
             // lbl_accessModifier
             // 
-            this.lbl_accessModifier.AutoSize = true;
-            this.lbl_accessModifier.Location = new System.Drawing.Point(12, 30);
-            this.lbl_accessModifier.Name = "lbl_accessModifier";
-            this.lbl_accessModifier.Size = new System.Drawing.Size(116, 15);
-            this.lbl_accessModifier.TabIndex = 5;
-            this.lbl_accessModifier.Text = "Modifikátor přístupu";
+            lbl_accessModifier.AutoSize = true;
+            lbl_accessModifier.Location = new Point(12, 30);
+            lbl_accessModifier.Name = "lbl_accessModifier";
+            lbl_accessModifier.Size = new Size(116, 15);
+            lbl_accessModifier.TabIndex = 5;
+            lbl_accessModifier.Text = "Modifikátor přístupu";
             // 
             // lbl_datatype
             // 
-            this.lbl_datatype.AutoSize = true;
-            this.lbl_datatype.Location = new System.Drawing.Point(166, 30);
-            this.lbl_datatype.Name = "lbl_datatype";
-            this.lbl_datatype.Size = new System.Drawing.Size(64, 15);
-            this.lbl_datatype.TabIndex = 6;
-            this.lbl_datatype.Text = "Datový typ";
+            lbl_datatype.AutoSize = true;
+            lbl_datatype.Location = new Point(166, 30);
+            lbl_datatype.Name = "lbl_datatype";
+            lbl_datatype.Size = new Size(64, 15);
+            lbl_datatype.TabIndex = 6;
+            lbl_datatype.Text = "Datový typ";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(291, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 15);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Název metody";
+            label1.AutoSize = true;
+            label1.Location = new Point(291, 30);
+            label1.Name = "label1";
+            label1.Size = new Size(83, 15);
+            label1.TabIndex = 7;
+            label1.Text = "Název metody";
             // 
             // MethodEditForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 134);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lbl_datatype);
-            this.Controls.Add(this.lbl_accessModifier);
-            this.Controls.Add(this.txtBox_methodName);
-            this.Controls.Add(this.comboBox_dataType);
-            this.Controls.Add(this.comboBox_accessModifier);
-            this.Controls.Add(this.btn_save);
-            this.Controls.Add(this.btn_cancel);
-            this.Name = "MethodEditForm";
-            this.Text = "Editace metody";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(417, 134);
+            Controls.Add(label1);
+            Controls.Add(lbl_datatype);
+            Controls.Add(lbl_accessModifier);
+            Controls.Add(txtBox_methodName);
+            Controls.Add(comboBox_dataType);
+            Controls.Add(comboBox_accessModifier);
+            Controls.Add(btn_save);
+            Controls.Add(btn_cancel);
+            Name = "MethodEditForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Editace metody";
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 

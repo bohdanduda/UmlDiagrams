@@ -28,102 +28,103 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btn_add_class = new System.Windows.Forms.Button();
-            this.btn_removeClass = new System.Windows.Forms.Button();
-            this.btn_SavePicture = new System.Windows.Forms.Button();
-            this.btn_SaveDiagram = new System.Windows.Forms.Button();
-            this.btn_LoadDiagram = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            pictureBox1 = new PictureBox();
+            timer1 = new System.Windows.Forms.Timer(components);
+            btn_add_class = new Button();
+            btn_removeClass = new Button();
+            btn_SavePicture = new Button();
+            btn_SaveDiagram = new Button();
+            btn_LoadDiagram = new Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(776, 408);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            this.pictureBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDoubleClick);
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
+            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(776, 408);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            pictureBox1.Paint += pictureBox1_Paint;
+            pictureBox1.MouseDoubleClick += pictureBox1_MouseDoubleClick;
+            pictureBox1.MouseDown += pictureBox1_MouseDown;
+            pictureBox1.MouseMove += pictureBox1_MouseMove;
+            pictureBox1.MouseUp += pictureBox1_MouseUp;
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 20;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            timer1.Enabled = true;
+            timer1.Interval = 20;
+            timer1.Tick += timer1_Tick;
             // 
             // btn_add_class
             // 
-            this.btn_add_class.Location = new System.Drawing.Point(12, 426);
-            this.btn_add_class.Name = "btn_add_class";
-            this.btn_add_class.Size = new System.Drawing.Size(90, 23);
-            this.btn_add_class.TabIndex = 1;
-            this.btn_add_class.Text = "PŘIDAT TŘÍDU";
-            this.btn_add_class.UseVisualStyleBackColor = true;
-            this.btn_add_class.Click += new System.EventHandler(this.btn_add_class_Click);
+            btn_add_class.Location = new Point(12, 426);
+            btn_add_class.Name = "btn_add_class";
+            btn_add_class.Size = new Size(90, 23);
+            btn_add_class.TabIndex = 1;
+            btn_add_class.Text = "PŘIDAT TŘÍDU";
+            btn_add_class.UseVisualStyleBackColor = true;
+            btn_add_class.Click += btn_add_class_Click;
             // 
             // btn_removeClass
             // 
-            this.btn_removeClass.Location = new System.Drawing.Point(108, 426);
-            this.btn_removeClass.Name = "btn_removeClass";
-            this.btn_removeClass.Size = new System.Drawing.Size(113, 23);
-            this.btn_removeClass.TabIndex = 2;
-            this.btn_removeClass.Text = "ODSTRANIT TŘÍDU";
-            this.btn_removeClass.UseVisualStyleBackColor = true;
-            this.btn_removeClass.Click += new System.EventHandler(this.btn_removeClass_Click);
+            btn_removeClass.Location = new Point(108, 426);
+            btn_removeClass.Name = "btn_removeClass";
+            btn_removeClass.Size = new Size(113, 23);
+            btn_removeClass.TabIndex = 2;
+            btn_removeClass.Text = "ODSTRANIT TŘÍDU";
+            btn_removeClass.UseVisualStyleBackColor = true;
+            btn_removeClass.Click += btn_removeClass_Click;
             // 
             // btn_SavePicture
             // 
-            this.btn_SavePicture.Location = new System.Drawing.Point(641, 426);
-            this.btn_SavePicture.Name = "btn_SavePicture";
-            this.btn_SavePicture.Size = new System.Drawing.Size(147, 23);
-            this.btn_SavePicture.TabIndex = 3;
-            this.btn_SavePicture.Text = "VYGENEROVAT OBRÁZEK";
-            this.btn_SavePicture.UseVisualStyleBackColor = true;
-            this.btn_SavePicture.Click += new System.EventHandler(this.btn_SavePicture_Click);
+            btn_SavePicture.Location = new Point(641, 426);
+            btn_SavePicture.Name = "btn_SavePicture";
+            btn_SavePicture.Size = new Size(147, 23);
+            btn_SavePicture.TabIndex = 3;
+            btn_SavePicture.Text = "VYGENEROVAT OBRÁZEK";
+            btn_SavePicture.UseVisualStyleBackColor = true;
+            btn_SavePicture.Click += btn_SavePicture_Click;
             // 
             // btn_SaveDiagram
             // 
-            this.btn_SaveDiagram.Location = new System.Drawing.Point(337, 426);
-            this.btn_SaveDiagram.Name = "btn_SaveDiagram";
-            this.btn_SaveDiagram.Size = new System.Drawing.Size(75, 23);
-            this.btn_SaveDiagram.TabIndex = 4;
-            this.btn_SaveDiagram.Text = "ULOŽIT";
-            this.btn_SaveDiagram.UseVisualStyleBackColor = true;
-            this.btn_SaveDiagram.Click += new System.EventHandler(this.btn_SaveDiagram_Click);
+            btn_SaveDiagram.Location = new Point(337, 426);
+            btn_SaveDiagram.Name = "btn_SaveDiagram";
+            btn_SaveDiagram.Size = new Size(75, 23);
+            btn_SaveDiagram.TabIndex = 4;
+            btn_SaveDiagram.Text = "ULOŽIT";
+            btn_SaveDiagram.UseVisualStyleBackColor = true;
+            btn_SaveDiagram.Click += btn_SaveDiagram_Click;
             // 
             // btn_LoadDiagram
             // 
-            this.btn_LoadDiagram.Location = new System.Drawing.Point(418, 426);
-            this.btn_LoadDiagram.Name = "btn_LoadDiagram";
-            this.btn_LoadDiagram.Size = new System.Drawing.Size(75, 23);
-            this.btn_LoadDiagram.TabIndex = 5;
-            this.btn_LoadDiagram.Text = "NAČÍST";
-            this.btn_LoadDiagram.UseVisualStyleBackColor = true;
-            this.btn_LoadDiagram.Click += new System.EventHandler(this.btn_LoadDiagram_Click);
+            btn_LoadDiagram.Location = new Point(418, 426);
+            btn_LoadDiagram.Name = "btn_LoadDiagram";
+            btn_LoadDiagram.Size = new Size(75, 23);
+            btn_LoadDiagram.TabIndex = 5;
+            btn_LoadDiagram.Text = "NAČÍST";
+            btn_LoadDiagram.UseVisualStyleBackColor = true;
+            btn_LoadDiagram.Click += btn_LoadDiagram_Click;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 459);
-            this.Controls.Add(this.btn_LoadDiagram);
-            this.Controls.Add(this.btn_SaveDiagram);
-            this.Controls.Add(this.btn_SavePicture);
-            this.Controls.Add(this.btn_removeClass);
-            this.Controls.Add(this.btn_add_class);
-            this.Controls.Add(this.pictureBox1);
-            this.Name = "MainForm";
-            this.Text = "UML diagram";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 459);
+            Controls.Add(btn_LoadDiagram);
+            Controls.Add(btn_SaveDiagram);
+            Controls.Add(btn_SavePicture);
+            Controls.Add(btn_removeClass);
+            Controls.Add(btn_add_class);
+            Controls.Add(pictureBox1);
+            Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "UML diagram";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
 
         }
 

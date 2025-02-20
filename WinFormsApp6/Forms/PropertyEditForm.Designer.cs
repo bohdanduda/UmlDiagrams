@@ -28,113 +28,106 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_propertyName = new System.Windows.Forms.Label();
-            this.txtBox_propertyName = new System.Windows.Forms.TextBox();
-            this.btn_save = new System.Windows.Forms.Button();
-            this.btn_cancel = new System.Windows.Forms.Button();
-            this.comboBox_accessModifier = new System.Windows.Forms.ComboBox();
-            this.comboBox_dataType = new System.Windows.Forms.ComboBox();
-            this.lbl_accessModifier = new System.Windows.Forms.Label();
-            this.lbl_dataType = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            lbl_propertyName = new Label();
+            txtBox_propertyName = new TextBox();
+            btn_save = new Button();
+            btn_cancel = new Button();
+            comboBox_accessModifier = new ComboBox();
+            comboBox_dataType = new ComboBox();
+            lbl_accessModifier = new Label();
+            lbl_dataType = new Label();
+            SuspendLayout();
             // 
             // lbl_propertyName
             // 
-            this.lbl_propertyName.AutoSize = true;
-            this.lbl_propertyName.Location = new System.Drawing.Point(274, 26);
-            this.lbl_propertyName.Name = "lbl_propertyName";
-            this.lbl_propertyName.Size = new System.Drawing.Size(92, 15);
-            this.lbl_propertyName.TabIndex = 0;
-            this.lbl_propertyName.Text = "Název vlastnosti";
+            lbl_propertyName.AutoSize = true;
+            lbl_propertyName.Location = new Point(274, 26);
+            lbl_propertyName.Name = "lbl_propertyName";
+            lbl_propertyName.Size = new Size(92, 15);
+            lbl_propertyName.TabIndex = 0;
+            lbl_propertyName.Text = "Název vlastnosti";
             // 
             // txtBox_propertyName
             // 
-            this.txtBox_propertyName.Location = new System.Drawing.Point(251, 44);
-            this.txtBox_propertyName.Name = "txtBox_propertyName";
-            this.txtBox_propertyName.Size = new System.Drawing.Size(141, 23);
-            this.txtBox_propertyName.TabIndex = 1;
+            txtBox_propertyName.Location = new Point(251, 44);
+            txtBox_propertyName.Name = "txtBox_propertyName";
+            txtBox_propertyName.Size = new Size(141, 23);
+            txtBox_propertyName.TabIndex = 3;
             // 
             // btn_save
             // 
-            this.btn_save.Location = new System.Drawing.Point(118, 92);
-            this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(75, 23);
-            this.btn_save.TabIndex = 2;
-            this.btn_save.Text = "ULOŽIT";
-            this.btn_save.UseVisualStyleBackColor = true;
-            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            btn_save.Location = new Point(118, 92);
+            btn_save.Name = "btn_save";
+            btn_save.Size = new Size(75, 23);
+            btn_save.TabIndex = 4;
+            btn_save.Text = "ULOŽIT";
+            btn_save.UseVisualStyleBackColor = true;
+            btn_save.Click += btn_save_Click;
             // 
             // btn_cancel
             // 
-            this.btn_cancel.Location = new System.Drawing.Point(204, 92);
-            this.btn_cancel.Name = "btn_cancel";
-            this.btn_cancel.Size = new System.Drawing.Size(75, 23);
-            this.btn_cancel.TabIndex = 3;
-            this.btn_cancel.Text = "STORNO";
-            this.btn_cancel.UseVisualStyleBackColor = true;
-            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
+            btn_cancel.Location = new Point(204, 92);
+            btn_cancel.Name = "btn_cancel";
+            btn_cancel.Size = new Size(75, 23);
+            btn_cancel.TabIndex = 5;
+            btn_cancel.Text = "STORNO";
+            btn_cancel.UseVisualStyleBackColor = true;
+            btn_cancel.Click += btn_cancel_Click;
             // 
             // comboBox_accessModifier
             // 
-            this.comboBox_accessModifier.FormattingEnabled = true;
-            this.comboBox_accessModifier.Items.AddRange(new object[] {
-            "public",
-            "protected",
-            "private"});
-            this.comboBox_accessModifier.Location = new System.Drawing.Point(12, 44);
-            this.comboBox_accessModifier.Name = "comboBox_accessModifier";
-            this.comboBox_accessModifier.Size = new System.Drawing.Size(121, 23);
-            this.comboBox_accessModifier.TabIndex = 4;
+            comboBox_accessModifier.FormattingEnabled = true;
+            comboBox_accessModifier.Items.AddRange(new object[] { "public", "protected", "private" });
+            comboBox_accessModifier.Location = new Point(12, 44);
+            comboBox_accessModifier.Name = "comboBox_accessModifier";
+            comboBox_accessModifier.Size = new Size(121, 23);
+            comboBox_accessModifier.TabIndex = 1;
             // 
             // comboBox_dataType
             // 
-            this.comboBox_dataType.FormattingEnabled = true;
-            this.comboBox_dataType.Items.AddRange(new object[] {
-            "int",
-            "string",
-            "double",
-            "bool",
-            "char"});
-            this.comboBox_dataType.Location = new System.Drawing.Point(143, 44);
-            this.comboBox_dataType.Name = "comboBox_dataType";
-            this.comboBox_dataType.Size = new System.Drawing.Size(89, 23);
-            this.comboBox_dataType.TabIndex = 5;
+            comboBox_dataType.FormattingEnabled = true;
+            comboBox_dataType.Items.AddRange(new object[] { "int", "string", "double", "bool", "char" });
+            comboBox_dataType.Location = new Point(143, 44);
+            comboBox_dataType.Name = "comboBox_dataType";
+            comboBox_dataType.Size = new Size(89, 23);
+            comboBox_dataType.TabIndex = 2;
             // 
             // lbl_accessModifier
             // 
-            this.lbl_accessModifier.AutoSize = true;
-            this.lbl_accessModifier.Location = new System.Drawing.Point(17, 26);
-            this.lbl_accessModifier.Name = "lbl_accessModifier";
-            this.lbl_accessModifier.Size = new System.Drawing.Size(116, 15);
-            this.lbl_accessModifier.TabIndex = 6;
-            this.lbl_accessModifier.Text = "Modifikátor přístupu";
+            lbl_accessModifier.AutoSize = true;
+            lbl_accessModifier.Location = new Point(17, 26);
+            lbl_accessModifier.Name = "lbl_accessModifier";
+            lbl_accessModifier.Size = new Size(116, 15);
+            lbl_accessModifier.TabIndex = 6;
+            lbl_accessModifier.Text = "Modifikátor přístupu";
             // 
             // lbl_dataType
             // 
-            this.lbl_dataType.AutoSize = true;
-            this.lbl_dataType.Location = new System.Drawing.Point(149, 26);
-            this.lbl_dataType.Name = "lbl_dataType";
-            this.lbl_dataType.Size = new System.Drawing.Size(64, 15);
-            this.lbl_dataType.TabIndex = 7;
-            this.lbl_dataType.Text = "Datový typ";
+            lbl_dataType.AutoSize = true;
+            lbl_dataType.Location = new Point(149, 26);
+            lbl_dataType.Name = "lbl_dataType";
+            lbl_dataType.Size = new Size(64, 15);
+            lbl_dataType.TabIndex = 7;
+            lbl_dataType.Text = "Datový typ";
             // 
             // PropertyEditForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 127);
-            this.Controls.Add(this.lbl_dataType);
-            this.Controls.Add(this.lbl_accessModifier);
-            this.Controls.Add(this.comboBox_dataType);
-            this.Controls.Add(this.comboBox_accessModifier);
-            this.Controls.Add(this.btn_cancel);
-            this.Controls.Add(this.btn_save);
-            this.Controls.Add(this.txtBox_propertyName);
-            this.Controls.Add(this.lbl_propertyName);
-            this.Name = "PropertyEditForm";
-            this.Text = "Editace vlastnosti";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(406, 127);
+            Controls.Add(lbl_dataType);
+            Controls.Add(lbl_accessModifier);
+            Controls.Add(comboBox_dataType);
+            Controls.Add(comboBox_accessModifier);
+            Controls.Add(btn_cancel);
+            Controls.Add(btn_save);
+            Controls.Add(txtBox_propertyName);
+            Controls.Add(lbl_propertyName);
+            Name = "PropertyEditForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Editace vlastnosti";
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
