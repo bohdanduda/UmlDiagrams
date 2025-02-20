@@ -208,22 +208,22 @@ namespace WinFormsApp6
             return new Point(this.GetTopLeftPoint().X + this.GetWidth(), this.GetTopLeftPoint().Y + this.GetHeight());
         }
 
-        public Point GetTopJointPoint()
+        public Point GetTopJoinPoint()
         {
             return new Point(this.GetTopLeftPoint().X + this.GetWidth() / 2, this.GetTopLeftPoint().Y);
         }
 
-        public Point GetBottomJointPoint()
+        public Point GetBottomJoinPoint()
         {
             return new Point(this.GetBottomLeftPoint().X + this.GetWidth() / 2, this.GetBottomLeftPoint().Y);
         }
 
-        public Point GetRightJointPoint()
+        public Point GetRightJoinPoint()
         {
             return new Point(this.GetTopLeftPoint().X+this.GetWidth(), this.GetTopLeftPoint().Y + this.GetHeight() / 2);
         }
 
-        public Point GetLeftJointPoint()
+        public Point GetLeftJoinPoint()
         {
             return new Point(this.GetTopLeftPoint().X, this.GetTopRightPoint().Y + this.GetHeight() / 2);
         }

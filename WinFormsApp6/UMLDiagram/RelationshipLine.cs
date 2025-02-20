@@ -142,63 +142,63 @@ namespace WinFormsApp6.UMLDiagram
             Dictionary<int, int> joinPointDistances = new();
 
             joinPointDistances.Add(BOTTOM_TO_LEFT, GetOrthogonalDistanceBetweenPoints(
-                sourceClassBox.GetBottomJointPoint(),
-                targetClassBox.GetLeftJointPoint()
+                sourceClassBox.GetBottomJoinPoint(),
+                targetClassBox.GetLeftJoinPoint()
                 ));
 
             joinPointDistances.Add(BOTTOM_TO_RIGHT, GetOrthogonalDistanceBetweenPoints(
-                sourceClassBox.GetBottomJointPoint(),
-                targetClassBox.GetRightJointPoint()
+                sourceClassBox.GetBottomJoinPoint(),
+                targetClassBox.GetRightJoinPoint()
                 ));
 
             joinPointDistances.Add(BOTTOM_TO_TOP, GetOrthogonalDistanceBetweenPoints(
-                sourceClassBox.GetBottomJointPoint(),
-                targetClassBox.GetTopJointPoint()
+                sourceClassBox.GetBottomJoinPoint(),
+                targetClassBox.GetTopJoinPoint()
                 ));
 
             joinPointDistances.Add(LEFT_TO_BOTTOM, GetOrthogonalDistanceBetweenPoints(
-                sourceClassBox.GetLeftJointPoint(),
-                targetClassBox.GetBottomJointPoint()
+                sourceClassBox.GetLeftJoinPoint(),
+                targetClassBox.GetBottomJoinPoint()
                 ));
 
             joinPointDistances.Add(LEFT_TO_RIGHT, GetOrthogonalDistanceBetweenPoints(
-                sourceClassBox.GetLeftJointPoint(),
-                targetClassBox.GetRightJointPoint()
+                sourceClassBox.GetLeftJoinPoint(),
+                targetClassBox.GetRightJoinPoint()
                 ));
 
             joinPointDistances.Add(LEFT_TO_TOP, GetOrthogonalDistanceBetweenPoints(
-                sourceClassBox.GetLeftJointPoint(),
-                targetClassBox.GetTopJointPoint()
+                sourceClassBox.GetLeftJoinPoint(),
+                targetClassBox.GetTopJoinPoint()
                 ));
 
             joinPointDistances.Add(RIGHT_TO_BOTTOM, GetOrthogonalDistanceBetweenPoints(
-                sourceClassBox.GetRightJointPoint(),
-                targetClassBox.GetBottomJointPoint()
+                sourceClassBox.GetRightJoinPoint(),
+                targetClassBox.GetBottomJoinPoint()
                 ));
 
             joinPointDistances.Add(RIGHT_TO_LEFT, GetOrthogonalDistanceBetweenPoints(
-                sourceClassBox.GetRightJointPoint(),
-                targetClassBox.GetLeftJointPoint()
+                sourceClassBox.GetRightJoinPoint(),
+                targetClassBox.GetLeftJoinPoint()
                 ));
 
             joinPointDistances.Add(RIGHT_TO_TOP, GetOrthogonalDistanceBetweenPoints(
-                sourceClassBox.GetRightJointPoint(),
-                targetClassBox.GetTopJointPoint()
+                sourceClassBox.GetRightJoinPoint(),
+                targetClassBox.GetTopJoinPoint()
                 ));
 
             joinPointDistances.Add(TOP_TO_BOTTOM, GetOrthogonalDistanceBetweenPoints(
-                sourceClassBox.GetTopJointPoint(),
-                targetClassBox.GetBottomJointPoint()
+                sourceClassBox.GetTopJoinPoint(),
+                targetClassBox.GetBottomJoinPoint()
                 ));
 
             joinPointDistances.Add(TOP_TO_LEFT, GetOrthogonalDistanceBetweenPoints(
-                sourceClassBox.GetTopJointPoint(),
-                targetClassBox.GetLeftJointPoint()
+                sourceClassBox.GetTopJoinPoint(),
+                targetClassBox.GetLeftJoinPoint()
                 ));
 
             joinPointDistances.Add(TOP_TO_RIGHT, GetOrthogonalDistanceBetweenPoints(
-                sourceClassBox.GetTopJointPoint(),
-                targetClassBox.GetRightJointPoint()
+                sourceClassBox.GetTopJoinPoint(),
+                targetClassBox.GetRightJoinPoint()
                 ));
 
             KeyValuePair<int, int> shortestDistance = new KeyValuePair<int, int>(0, joinPointDistances.Values.Max() + 1);
@@ -214,74 +214,74 @@ namespace WinFormsApp6.UMLDiagram
             switch (shortestDistance.Key)
             {
                 case BOTTOM_TO_LEFT:
-                    this.StartPoint = sourceClassBox.GetBottomJointPoint();
-                    this.EndPoint = targetClassBox.GetLeftJointPoint();
+                    this.StartPoint = sourceClassBox.GetBottomJoinPoint();
+                    this.EndPoint = targetClassBox.GetLeftJoinPoint();
                     this.joinType = BOTTOM_TO_LEFT;
                     break;
 
                 case BOTTOM_TO_RIGHT:
-                    this.StartPoint = sourceClassBox.GetBottomJointPoint();
-                    this.EndPoint = targetClassBox.GetRightJointPoint();
+                    this.StartPoint = sourceClassBox.GetBottomJoinPoint();
+                    this.EndPoint = targetClassBox.GetRightJoinPoint();
                     this.joinType = BOTTOM_TO_RIGHT;
                     break;
 
                 case BOTTOM_TO_TOP:
-                    this.StartPoint = sourceClassBox.GetBottomJointPoint();
-                    this.EndPoint = targetClassBox.GetTopJointPoint();
+                    this.StartPoint = sourceClassBox.GetBottomJoinPoint();
+                    this.EndPoint = targetClassBox.GetTopJoinPoint();
                     this.joinType = BOTTOM_TO_TOP;
                     break;
 
                 case LEFT_TO_BOTTOM:
-                    this.StartPoint = sourceClassBox.GetLeftJointPoint();
-                    this.EndPoint = targetClassBox.GetBottomJointPoint();
+                    this.StartPoint = sourceClassBox.GetLeftJoinPoint();
+                    this.EndPoint = targetClassBox.GetBottomJoinPoint();
                     this.joinType = LEFT_TO_BOTTOM;
                     break;
 
                 case LEFT_TO_RIGHT:
-                    this.StartPoint = sourceClassBox.GetLeftJointPoint();
-                    this.EndPoint = targetClassBox.GetRightJointPoint();
+                    this.StartPoint = sourceClassBox.GetLeftJoinPoint();
+                    this.EndPoint = targetClassBox.GetRightJoinPoint();
                     this.joinType = LEFT_TO_RIGHT;
                     break;
 
                 case LEFT_TO_TOP:
-                    this.StartPoint = sourceClassBox.GetLeftJointPoint();
-                    this.EndPoint = targetClassBox.GetTopJointPoint();
+                    this.StartPoint = sourceClassBox.GetLeftJoinPoint();
+                    this.EndPoint = targetClassBox.GetTopJoinPoint();
                     this.joinType = LEFT_TO_TOP;
                     break;
 
                 case RIGHT_TO_BOTTOM:
-                    this.StartPoint = sourceClassBox.GetRightJointPoint();
-                    this.EndPoint = targetClassBox.GetBottomJointPoint();
+                    this.StartPoint = sourceClassBox.GetRightJoinPoint();
+                    this.EndPoint = targetClassBox.GetBottomJoinPoint();
                     this.joinType = RIGHT_TO_BOTTOM;
                     break;
 
                 case RIGHT_TO_LEFT:
-                    this.StartPoint = sourceClassBox.GetRightJointPoint();
-                    this.EndPoint = targetClassBox.GetLeftJointPoint(); ;
+                    this.StartPoint = sourceClassBox.GetRightJoinPoint();
+                    this.EndPoint = targetClassBox.GetLeftJoinPoint(); ;
                     this.joinType = RIGHT_TO_LEFT;
                     break;
 
                 case RIGHT_TO_TOP:
-                    this.StartPoint = sourceClassBox.GetRightJointPoint();
-                    this.EndPoint = targetClassBox.GetTopJointPoint();
+                    this.StartPoint = sourceClassBox.GetRightJoinPoint();
+                    this.EndPoint = targetClassBox.GetTopJoinPoint();
                     this.joinType = RIGHT_TO_TOP;
                     break;
 
                 case TOP_TO_BOTTOM:
-                    this.StartPoint = sourceClassBox.GetTopJointPoint();
-                    this.EndPoint = targetClassBox.GetBottomJointPoint();
+                    this.StartPoint = sourceClassBox.GetTopJoinPoint();
+                    this.EndPoint = targetClassBox.GetBottomJoinPoint();
                     this.joinType = TOP_TO_BOTTOM;
                     break;
 
                 case TOP_TO_LEFT:
-                    this.StartPoint = sourceClassBox.GetTopJointPoint();
-                    this.EndPoint = targetClassBox.GetLeftJointPoint();
+                    this.StartPoint = sourceClassBox.GetTopJoinPoint();
+                    this.EndPoint = targetClassBox.GetLeftJoinPoint();
                     this.joinType = TOP_TO_LEFT;
                     break;
 
                 case TOP_TO_RIGHT:
-                    this.StartPoint = sourceClassBox.GetTopJointPoint();
-                    this.EndPoint = targetClassBox.GetRightJointPoint();
+                    this.StartPoint = sourceClassBox.GetTopJoinPoint();
+                    this.EndPoint = targetClassBox.GetRightJoinPoint();
                     this.joinType = TOP_TO_RIGHT;
                     break;
 
@@ -335,6 +335,7 @@ namespace WinFormsApp6.UMLDiagram
                 TOP_TO_BOTTOM,
                 BOTTOM_TO_TOP
             };
+
             return horizontalTypes.Contains(this.joinType);
         }
 
@@ -344,6 +345,7 @@ namespace WinFormsApp6.UMLDiagram
                 LEFT_TO_RIGHT,
                 RIGHT_TO_LEFT
             };
+
             return verticalTypes.Contains(this.joinType);
         }
 
@@ -405,8 +407,6 @@ namespace WinFormsApp6.UMLDiagram
                 default:
                     throw new Exception("Neplatný typ vztahu!");
             }
-
-            
         }
 
         private Pen GetPen()
@@ -417,6 +417,7 @@ namespace WinFormsApp6.UMLDiagram
                 float[] dashValues = { 7, 7 };
                 pen.DashPattern = dashValues;
             }
+
             return pen;
         }
     }
