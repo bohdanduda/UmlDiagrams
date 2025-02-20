@@ -71,7 +71,7 @@ namespace WinFormsApp6
                 this.TopLeft.Y + this.GetTitleHeight(),
                 this.TopLeft.X + this.GetWidth(),
                 this.TopLeft.Y + this.GetTitleHeight()
-                );
+            );
 
             if (this.ClassData.Properties.Count > 0 && this.ClassData.Methods.Count > 0)
             {
@@ -81,9 +81,8 @@ namespace WinFormsApp6
                     this.TopLeft.Y + this.GetTitleHeight() + this.GetPropertiesSectionHeight(),
                     this.TopLeft.X + this.GetWidth(),
                     this.TopLeft.Y + this.GetTitleHeight() + this.GetPropertiesSectionHeight()
-                    );
+                );
             }
-
         }
 
         private void DrawTexts(Graphics graphics)
@@ -117,12 +116,20 @@ namespace WinFormsApp6
 
         private void DrawProperties(Graphics graphics)
         {
-            this.PrintLines(graphics, (from classProperty in ClassData.Properties select classProperty.ToString()).ToList(), this.GetPropertyListStartingPoint());
+            this.PrintLines(
+                graphics,
+                (from classProperty in ClassData.Properties select classProperty.ToString()).ToList(),
+                this.GetPropertyListStartingPoint()
+            );
         }
 
         private void DrawMethods(Graphics graphics)
         {
-            this.PrintLines(graphics, (from classMethod in ClassData.Methods select classMethod.ToString()).ToList(), this.GetMethodListStartingPoint());
+            this.PrintLines(
+                graphics,
+                (from classMethod in ClassData.Methods select classMethod.ToString()).ToList(),
+                this.GetMethodListStartingPoint()
+            );
         }
 
         private void PrintLines(Graphics graphics, List<string> lines, Point startingPoint)
@@ -134,7 +141,8 @@ namespace WinFormsApp6
                     SystemFonts.DefaultFont,
                     Brushes.Black,
                     startingPoint
-                    );
+                );
+
                 startingPoint.Y += SystemFonts.DefaultFont.Height;
             }
         }
@@ -220,7 +228,7 @@ namespace WinFormsApp6
 
         public Point GetRightJoinPoint()
         {
-            return new Point(this.GetTopLeftPoint().X+this.GetWidth(), this.GetTopLeftPoint().Y + this.GetHeight() / 2);
+            return new Point(this.GetTopLeftPoint().X + this.GetWidth(), this.GetTopLeftPoint().Y + this.GetHeight() / 2);
         }
 
         public Point GetLeftJoinPoint()
@@ -230,7 +238,7 @@ namespace WinFormsApp6
 
         public Point GetCenterPoint()
         {
-            return new Point(this.GetTopLeftPoint().X + GetWidth() / 2, this.GetTopLeftPoint().Y+this.GetHeight() / 2);
+            return new Point(this.GetTopLeftPoint().X + GetWidth() / 2, this.GetTopLeftPoint().Y + this.GetHeight() / 2);
         }
     }
 }
